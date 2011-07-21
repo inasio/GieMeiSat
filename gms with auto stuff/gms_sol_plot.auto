@@ -1,0 +1,76 @@
+import matplotlib.pyplot as py
+import numpy as ny
+
+#--------------------drawing stuff-------------------
+
+fig_width_pt = 546.0  # Get this from LaTeX using 
+
+inches_per_pt = 1.0/72.0                # Convert pt to inch
+golden_mean = (ny.sqrt(5)-1.0)/2.0         # Aesthetic ratio
+fig_width = fig_width_pt*inches_per_pt  # width in inches
+fig_height = fig_width*golden_mean      # height in inches 
+fig_size =  [fig_width,fig_height]
+
+params = {'backend': 'ps',
+          'axes.labelsize': 14,
+		  'title.fontsize': 20,
+          'text.fontsize': 12,
+          'xtick.labelsize': 12,
+          'ytick.labelsize': 12,
+          'text.usetex': True,
+          'figure.figsize': fig_size}
+
+py.rcParams.update(params)
+py.rc('lines', linewidth=1)
+py.rc('lines', markersize=9)
+py.rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+## for Palatino and other serif fonts use:
+#py.rc('font',**{'family':'serif','serif':['Palatino']))
+
+
+#--------------------drawing stuff-------------------
+
+py.clf()
+
+bla = branch2()
+#bla = load('6')
+s1 = bla([207])
+s2 = bla([217])
+s3 = bla([240])
+sol1 = s1[0]
+sol2 = s2[0]
+sol3 = s3[0]
+
+py.figure(1)
+py.plot(sol1['t'],sol1['U(1)'],'b:')
+py.plot(sol2['t'],sol2['U(1)'],'b')
+py.plot(sol3['t'],sol3['U(1)'],'b--')
+py.legend((r'$\mathrm{I}$',r'$\mathrm{II}$',r'$\mathrm{III}$'),loc='upper center')
+py.xlabel('x')
+py.ylabel('V(x)')
+py.title('Distinct two-mesa solutions')
+py.show()
+
+B2 = py.loadtxt('branch2')
+x2 = B2[:,0]
+y2 = B2[:,3]
+int3 = py.find(y2==min(y2))
+int4 = py.find(x2==max(x2))
+stable = '-b'
+unstable = '--b'
+
+
+py.figure(2)
+py.plot(B2[0:int3,0],B2[0:int3,3],unstable)
+py.plot(B2[int3:int4,0],B2[int3:int4,3],stable)
+py.plot(B2[int4:-1,0],B2[int4:-1,3],unstable)
+#py.plot(br['PERIOD'],br['MAX U(2)'])
+py.plot(sol1['PAR(11)'],0.310581,'ro')
+py.plot(sol2['PAR(11)'],0.299566,'ro')
+py.plot(sol3['PAR(11)'],0.30724,'ro')
+py.xlabel('L')
+py.ylabel('max(V)')
+py.title('Two-mesa branch')
+py.annotate(r'$\mathrm{I}$',(0.8,0.31))
+py.annotate(r'$\mathrm{II}$',(2.34,0.2987))
+py.annotate(r'$\mathrm{III}$',(3.8,0.3064))

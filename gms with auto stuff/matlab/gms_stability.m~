@@ -1,0 +1,65 @@
+function gms_eigvals
+
+% on [12,42] should be unstable, on [43,96] stable, [97,163] unstable
+D = 1;
+Eps = 0.02;
+K = 2.5;
+Tau = 1;
+Temo = 1;
+Skip = 2;   
+L1_all = load('../data/L1param');
+
+Int = 12:163;
+for I = Int
+  (I-min(Int))/(max(Int) - min(Int))
+  L = L1_all(I-min(Int)+1);
+  Nom_u = ['../data/sol1_u',num2str(I)];
+  Nom_v = ['../data/sol1_v',num2str(I)];
+  U1 = load(Nom_u);
+  V1 = load(Nom_v);
+  U = U1(1:Skip:end);
+  V = V1(1:Skip:end);
+  Lap = laplacian(U,V);
+  A = dfg_duv(U,V);
+
+  [EVE,EVA] = eig(full(A + Lap));   % main matlab eigenvalue routine
+  Eva_sorted = sort(diag(EVA),'descend');
+  Max_6(1:6,Temo) = Eva_sorted(1:6);
+  MaxEva(Temo) = max(diag(EVA));
+  Temo = Temo+1;
+end
+figure(1)
+plot(Int,MaxEva)
+figure(2)
+plot(Int,Max_6)
+
+function y = dfg_duv(u,v)
+
+  dfdu = (2*u)./(v.*(K*u.^2 + 1)) - (2*K*u.^3)./(v.*(K*u.^2 + 1).^2) - 1;
+  dfdv = -u.^2./(v.^2.*(1 + K*u.^2));
+  dgdu = 2*u/Tau;
+  dgdv = -1/Tau*ones(size(u));
+
+  a11 = diag(dfdu);
+  a12 = diag(dfdv);
+  a21 = diag(dgdu);
+  a22 = diag(dgdv);
+
+  x = [a11, a12; a21, a22];
+  y = sparse(x);
+
+end
+
+function y = laplacian(u,v)
+  
+  n = length(u);
+  h = 1/(n+1);
+  du = (Eps/(L*h))^2;
+  dv = D/(Tau*(L*h)^2);
+  e = ones(n,1);
+  a = spdiags([e -2*e e], -1:1,  n, n);
+  y = [du*a, zeros(n); zeros(n), dv*a];
+  y(1,1) = -du; y(end,end) = -dv;
+  y(n,n) = -du; y(n+1,n+1) = -dv;
+end
+end

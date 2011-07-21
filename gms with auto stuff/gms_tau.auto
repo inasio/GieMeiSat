@@ -1,0 +1,24 @@
+
+#==============
+# AUTO Demo schnak1
+#==============
+
+pgm = "gms_tau"
+
+r1 = run(e=pgm,c=pgm)
+save(r1,'tau_1')
+
+r2 = run(r1,IPS=17,ISP=1,ICP=[1,11],SP=['HB'],NTST=75,NMX=2000,NPR=25,DSMIN=0.001,DS=0.01,DSMAX=0.1)
+save(r2,'tau_2')
+
+#r3 = run(r1,IPS=17,ICP=[11],NTST=75,NMX=1700,NPR=25,DSMIN=0.0001,DS=-0.001,DSMAX=0.01)
+#branch_tau = merge(r2+r3)
+#save(branch_tau,'tau_3')
+
+#r2 = run(r1,IRS=100,IPS=17,ISP=2,ICP=[1,11],NTST=10,NMX=500,DSMIN=0.0001,DS=0.01,DSMAX=0.1)
+#save(r2,'tau_2')
+
+#r5 = run(branch_tau,IRS=72,IPS=17,ISP=1,ICP=[1,11],SP=['HB'],NPR=10,NTST=75,NMX=500,DSMIN=0.001,DS=-0.01,DSMAX=0.1)
+#save(r5,'tau_5')
+print "\n***Clean the directory***"
+#cl()

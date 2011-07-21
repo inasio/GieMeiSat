@@ -1,0 +1,55 @@
+import pylab as py
+import numpy as ny
+
+pgm = "gms1"
+
+r61 = run(e=pgm,c=pgm)
+save(r61,'61')
+
+r62 = run(r61,IPS=17,ISP=1,ICP=[11,3,4,5,6],NTST=75,NMX=2000,NPR=25,DSMIN=0.0001,DS=0.001,DSMAX=0.01)
+save(r62,'62')
+
+r63 = run(r61,IPS=17,ICP=[11,3,4,5,6],NTST=75,NMX=1700,NPR=25,DSMIN=0.0001,DS=-0.001,DSMAX=0.01)
+branch61 = merge(r62+r63)
+save(branch61,'63')
+branch61.writeRawFilename('branch61')
+
+r64 = run(branch61,IRS=104,IPS=16,NMX=1000,ICP=[14,3,4,5,6],DSMIN=0.05,DS=0.1,DSMAX=1)
+save(r64,'64')
+
+r65 = run(r64,IPS=17,ICP=[11,3,4,5,6],NTST=150,NMX=275,NPR=25,DSMIN=0.00001,DS=-0.0001,DSMAX=0.05)
+save(r65,'65')
+
+r66 = run(r64,IPS=17,ICP=[11,3,4,5,6],NTST=150,NMX=1200,DSMIN=0.0001,DS=0.001,DSMAX=0.02)
+branch62 = merge(r66+r65)
+save(branch62,'66')
+branch62.writeRawFilename('branch62')
+
+
+L1 = ny.zeros(164-12)
+for I in py.arange(164-12):
+	Sol1_u = branch61([12+I])[0]['U(1)']
+	Sol1_v = branch61([12+I])[0]['U(2)']
+	Sol1_x = branch61([12+I])[0].indepvararray
+	Filename1_u = 'data/'+'sol1_u'+str(12+I)
+	Filename1_v = 'data/'+'sol1_v'+str(12+I)
+	Filename1_x = 'data/'+'sol1_x'+str(12+I)
+	ny.savetxt(Filename1_u, Sol1_u, fmt='%.10e', delimiter=' ')
+	ny.savetxt(Filename1_v, Sol1_v, fmt='%.10e', delimiter=' ')
+	ny.savetxt(Filename1_x, Sol1_x, fmt='%.10e', delimiter=' ')
+	L1[I] = branch61([12+I])[0]['PAR(11)']
+ny.savetxt('data/L1param', L1, fmt='%.10e', delimiter=' ')
+
+L2 = ny.zeros(267-204)
+for I in py.arange(267-204):
+	Sol2_u = branch62([204+I])[0]['U(1)']
+	Sol2_v = branch62([204+I])[0]['U(2)']
+	Sol2_x = branch62([204+I])[0].indepvararray	
+	Filename2_u = 'data/'+'sol2_u'+str(204+I)
+	Filename2_v = 'data/'+'sol2_v'+str(204+I)
+	Filename2_x = 'data/'+'sol2_x'+str(204+I)
+	ny.savetxt(Filename2_u, Sol2_u, fmt='%.10e', delimiter=' ')
+	ny.savetxt(Filename2_v, Sol2_v, fmt='%.10e', delimiter=' ')
+	ny.savetxt(Filename2_x, Sol2_x, fmt='%.10e', delimiter=' ')
+	L2[I] = branch62([204+I])[0]['PAR(11)']
+ny.savetxt('data/L2param', L2, fmt='%.10e', delimiter=' ')

@@ -1,0 +1,102 @@
+% This file provides examples of some useful macros for typesetting
+% dissertations.  None of the macros defined here are necessary beyond
+% for the template documentation, so feel free to change, remove, and add
+% your own definitions.
+%
+% We recommend that you define macros to separate the semantics
+% of the things you write from how they are presented.  For example,
+% you'll see definitions below for a macro \file{}: by using
+% \file{} consistently in the text, we can change how filenames
+% are typeset simply by changing the definition of \file{} in
+% this file.
+% 
+%% The following is a directive for TeXShop to indicate the main file
+%%!TEX root = diss.tex
+
+\newcommand{\NA}{\textsc{n/a}}	% for "not applicable"
+\newcommand{\eg}{e.g.,\ }	% proper form of examples (\eg a, b, c)
+\newcommand{\ie}{i.e.,\ }	% proper form for that is (\ie a, b, c)
+\newcommand{\etal}{\emph{et al}}
+
+% Some useful macros for typesetting terms.
+\newcommand{\file}[1]{\texttt{#1}}
+\newcommand{\class}[1]{\texttt{#1}}
+\newcommand{\latexpackage}[1]{\href{http://www.ctan.org/macros/latex/contrib/#1}{\texttt{#1}}}
+\newcommand{\latexmiscpackage}[1]{\href{http://www.ctan.org/macros/latex/contrib/misc/#1.sty}{\texttt{#1}}}
+\newcommand{\env}[1]{\texttt{#1}}
+\newcommand{\BibTeX}{Bib\TeX}
+
+% Define a command \doi{} to typeset a digital object identifier (DOI).
+% Note: if the following definition raise an error, then you likely
+% have an ancient version of url.sty.  Either find a more recent version
+% (3.1 or later work fine) and simply copy it into this directory,  or
+% comment out the following two lines and uncomment the third.
+\DeclareUrlCommand\DOI{}
+\newcommand{\doi}[1]{\href{http://dx.doi.org/#1}{\DOI{doi:#1}}}
+%\newcommand{\doi}[1]{\href{http://dx.doi.org/#1}{doi:#1}}
+
+% Useful macro to reference an online document with a hyperlink
+% as well with the URL explicitly listed in a footnote
+% #1: the URL
+% #2: the anchoring text
+\newcommand{\webref}[2]{\href{#1}{#2}\footnote{\url{#1}}}
+
+% epigraph is a nice environment for typesetting quotations
+\makeatletter
+\newenvironment{epigraph}{%
+	\begin{flushright}
+	\begin{minipage}{\columnwidth-0.75in}
+	\begin{flushright}
+	\@ifundefined{singlespacing}{}{\singlespacing}%
+    }{
+	\end{flushright}
+	\end{minipage}
+	\end{flushright}}
+\makeatother
+
+% \FIXME{} is a useful macro for noting things needing to be changed.
+% The following definition will also output a warning to the console
+\newcommand{\FIXME}[1]{\typeout{**FIXME** #1}\textbf{[FIXME: #1]}}
+
+\newcommand{\dE}{\ensuremath{\delta\,}}
+\newcommand{\De}{\ensuremath{\Delta}}
+\newcommand{\aL}{\ensuremath{\alpha}}
+\newcommand{\bE}{\ensuremath{\beta}}
+\newcommand{\oM}{\ensuremath{\omega\,}}
+\newcommand{\Om}{\ensuremath{\Omega\,}}
+\newcommand{\tH}{\ensuremath{\theta\,}}
+\newcommand{\Th}{\ensuremath{\Theta\,}}
+\newcommand{\gA}{\ensuremath{\gamma\,}}
+\newcommand{\Ga}{\ensuremath{\Gamma}}
+\newcommand{\lA}{\ensuremath{\lambda}}
+\newcommand{\La}{\ensuremath{\Lambda}}
+\newcommand{\sI}{\ensuremath{\sigma}}
+\newcommand{\vA}{\ensuremath{\varsigma}}
+\newcommand{\kA}{\ensuremath{\kappa}}
+\newcommand{\eP}{\ensuremath{\epsilon\,}}
+\newcommand{\Ep}{\ensuremath{\varepsilon\,}}
+\newcommand{\EEp}{\ensuremath{\varepsilon^2\,}}
+\newcommand{\Na}{\ensuremath{\nabla}}
+\newcommand{\NNa}{\ensuremath{\nabla^2}}
+\newcommand{\pAr}[2]{\ensuremath{\frac{\partial#2}{\partial#1}}}
+\newcommand{\ppAr}[2]{\ensuremath{\frac{\partial^2#2}{\partial#1^2}}}
+\newcommand{\iNf}{\ensuremath{\rightarrow\infty}}
+\newcommand{\zEr}{\ensuremath{\rightarrow 0}}
+\newcommand{\ww}{\ensuremath{\mathbf{w}}}
+\newcommand{\WW}{\ensuremath{\mathbf{W}}}
+\newcommand{\DD}{\ensuremath{\mathcal{D}}}
+\newcommand{\FF}{\ensuremath{\mathcal{F}}}
+\newcommand{\VV}{\ensuremath{\mathcal{V}}}
+\newcommand{\Aa}{\ensuremath{\mathbf{A}}}
+\newcommand{\UU}{\ensuremath{\mathcal{U}}}
+\newcommand{\LL}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\sech}{\mathrm{sech} \,}
+\newcommand{\csch}{\mathrm{csch} \,}
+
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+% \newtheorem{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+
+% END

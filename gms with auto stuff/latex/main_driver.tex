@@ -1,0 +1,129 @@
+% \documentclass[a4paper,10pt]{article}
+\documentclass[fogscopy,onehalfspacing,11pt]{ubcdiss}
+
+\usepackage{times,mathptmx,courier}
+\usepackage[scaled=.92]{helvet}
+% \usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\addtolength{\parskip}{\baselineskip} %espacio entre parrafos
+\usepackage{amsmath,amssymb,amsbsy,amsfonts}
+\usepackage{times,mathptmx,courier}
+\usepackage[scaled=.92]{helvet}
+\usepackage{booktabs}
+\usepackage{listings}
+\lstset{basicstyle=\sffamily\scriptsize,showstringspaces=false,fontadjust}
+\usepackage[printonlyused,nohyperlinks]{acronym}
+\renewcommand{\acsfont}[1]{{\scshape \MakeTextLowercase{#1}}}
+% \usepackage{comment}
+\usepackage[numbers,sort&compress]{natbib}
+\newcommand{\citeeg}[1]{\citep[e.g.,][]{#1}}
+\usepackage[compact]{titlesec}
+\titleformat*{\section}{\singlespacing\raggedright\bfseries\Large}
+\titleformat*{\subsection}{\singlespacing\raggedright\bfseries\large}
+\titleformat*{\subsubsection}{\singlespacing\raggedright\bfseries}
+\titleformat*{\paragraph}{\singlespacing\raggedright\itshape}
+\usepackage[format=hang,indention=-1cm,labelfont={bf},margin=1em]{caption}
+\usepackage{url}
+\urlstyle{sf}	% typeset urls in sans-serif
+\usepackage{color}
+\definecolor{greytext}{gray}{0.5}
+	\graphicspath{{../images/}{.}}
+% 	\graphicspath{{./home/rozada/Temporary/Figures/GMSpaper}{.}}
+% \usepackage{hyperref}
+% \hypersetup{colorlinks,%
+% 			citecolor=black,%
+% 			filecolor=black,%
+% 			linkcolor=black,%
+% 			urlcolor=black}
+\usepackage[bookmarks,bookmarksnumbered,%
+    citebordercolor={0.8 0.8 0.8},filebordercolor={0.8 0.8 0.8},%
+    linkbordercolor={0.8 0.8 0.8},pagebordercolor={0.8 0.8 0.8},%
+    urlbordercolor={0.8 0.8 0.8},%
+    pagebackref,linktocpage%
+    ]{hyperref}
+\renewcommand\backrefpagesname{\(\rightarrow\) pages}
+\renewcommand\backref{\textcolor{greytext} \backrefpagesname\ }
+\renewcommand{\chapterautorefname}{Chapter}
+\renewcommand{\sectionautorefname}{Section}
+\renewcommand{\subsectionautorefname}{Section}
+\renewcommand{\subsubsectionautorefname}{Section}
+
+\input{macros}		%% all the tanh and pi functions
+
+%%% ------------------------------------------------
+%%% ------------------------------------------------
+
+%opening
+\title{Existence, Stability and Dynamics of Mesa Patterns}
+\author{Ignacio Rozada}
+\previousdegree{B. Physics, Universidad Aut\'{o}noma de M\'{e}xico, 2004}
+\previousdegree{M. Applied Mathematics, University of New Mexico, 2006}
+\degreetitle{Doctor of Philosophy}
+\institution{The University Of British Columbia}
+\campus{Vancouver}
+
+\faculty{The Faculty of Graduate Studies}
+\department{Institute of Applied Mathematics}
+\submissionmonth{April}
+\submissionyear{2192}
+
+\hypersetup{
+  pdftitle={mesa_patterns  (DRAFT: \today)},
+  pdfauthor={Ignacio Rozada},
+  pdfkeywords={Your keywords here}
+}
+
+\begin{document}
+
+\maketitle
+
+\include{abstract}
+\cleardoublepage
+
+\include{preface}
+\cleardoublepage
+
+\tableofcontents
+\cleardoublepage	% required by tocloft package
+
+\listoftables
+\cleardoublepage	% required by tocloft package
+
+\listoffigures
+\cleardoublepage	% required by tocloft package
+
+\tableofcontents
+\cleardoublepage	% required by tocloft package
+
+% \input{glossary}	% always input, since other macros may rely on it
+
+\textspacing		% begin one-half or double spacing
+
+% \include{ack}
+
+\mainmatter
+
+\acresetall	% reset all acronyms used so far
+
+%    1. Introduction
+\include{intro}
+\include{GMS_old}
+\include{mesa_construction}
+\include{K-mesa_stability}
+\include{one-mesa_stability}
+\include{hopf}
+
+\begin{singlespace}
+\raggedright
+\bibliographystyle{abbrvnat}
+\bibliography{growing-domain}
+\end{singlespace}
+
+\appendix
+\backmatter
+
+
+% \bibliographystyle{siam}
+% \bibliography{growing-domain}
+\end{document}
+

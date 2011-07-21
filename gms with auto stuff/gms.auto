@@ -1,0 +1,56 @@
+
+#==============
+# AUTO Demo schnak1
+#==============
+
+pgm = "gms1"
+
+r1 = run(e=pgm,c=pgm)
+save(r1,'1')
+
+r2 = run(r1,IPS=17,ISP=1,ICP=[11,3,4,5,6],NTST=75,NMX=2000,NPR=25,DSMIN=0.0001,DS=0.001,DSMAX=0.01)
+save(r2,'2')
+
+r3 = run(r1,IPS=17,ICP=[11,3,4,5,6],NTST=75,NMX=1700,NPR=25,DSMIN=0.0001,DS=-0.001,DSMAX=0.01)
+branch1 = merge(r2+r3)
+save(branch1,'3')
+branch1.writeRawFilename('branch1')
+
+r4 = run(branch1,IRS=110,IPS=16,NMX=1000,ICP=[14,3,4,5,6],DSMIN=0.05,DS=0.1,DSMAX=1)
+save(r4,'4')
+
+r5 = run(r4,IPS=17,ICP=[11,3,4,5,6],NTST=150,NMX=275,NPR=25,DSMIN=0.00001,DS=-0.0001,DSMAX=0.05)
+save(r5,'5')
+
+r6 = run(r4,IPS=17,ICP=[11,3,4,5,6],NTST=150,NMX=1200,DSMIN=0.0001,DS=0.001,DSMAX=0.02)
+branch2 = merge(r6+r5)
+save(branch2,'6')
+branch2.writeRawFilename('branch2')
+
+r7 = run(branch2,IRS=237,IPS=16,NMX=1000,ICP=[14,3,4,5,6],NTST=400,DSMIN=0.07,DS=0.2,DSMAX=1)
+save(r7,'7')
+
+r8 = run(r7,IPS=17,ICP=[11,3,4,5,6],NTST=400,NMX=300,NPR=25,DSMIN=0.0001,DS=-0.001,DSMAX=0.05)
+save(r8,'8')
+
+r9 = run(r7,IPS=17,ICP=[11,3,4,5,6],NTST=400,NMX=1325,NPR=25,DSMIN=0.0001,DS=0.01,DSMAX=0.02)
+branch3 = merge(r8+r9)
+save(branch3,'9')
+branch3.writeRawFilename('branch3')
+
+r10 = run(branch3,IRS=327,IPS=16,NMX=1000,NPR=25,ICP=[14,3,4,5,6],NTST=1800,DSMIN=0.01,DS=0.4,DSMAX=1)
+save(r10,'10')
+
+r11 = run(r10,IPS=17,ICP=[11,3,4,5,6],NTST=1000,NMX=250,DSMIN=0.0001,DS=-0.001,DSMAX=0.05)
+save(r11,'11')
+
+r12 = run(r10,IPS=17,ICP=[11,3,4,5,6],NTST=1000,NMX=750,DSMIN=0.0002,DS=0.003,DSMAX=0.09)
+branch4 = merge(r11+r12)
+save(branch4,'12')
+branch4.writeRawFilename('branch4')
+
+all = branch1+branch2+branch3+branch4
+save(all,'99')
+
+print "\n***Clean the directory***"
+#cl()

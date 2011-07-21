@@ -1,0 +1,40 @@
+function react_diff_test
+
+
+    
+  N = 20;
+  H = 1/(N-1);
+  Dt = 0.11;
+  X = 0:H:1;
+  L = laplacian_matrix;
+  M = speye(N^2) - Dt*L;
+  
+  Y = initial_condition;
+  Z = L*Y;
+  Feo(I) = norm(Z + 2*pi^2*Y,inf);
+
+  function l = laplacian_matrix
+
+    m1 = speye(N);
+    data = ones(N,3); data(:,2) = -2;
+    m2 = spdiags(data,-1:1,N,N);
+    l = kron(m1,m2) + kron(m2,m1);
+    for i = 1:N
+      l(i,N+i) = 2;
+      l(N*(N-1)+i,N*(N-2)+i) = 2;
+      l(N*i,N*i-1) = 2;
+      l(N*(i-1)+1,N*(i-1)+2) = 2;
+    end
+    l = l/H^2;
+  end
+
+  function y = initial_condition
+    
+    for i = 1:N
+      for j = 1:N
+        y1(i,j) = cos(pi*X(i))*cos(pi*X(j));
+      end
+    end
+    y = reshape(y1,N^2,1);
+  end
+end

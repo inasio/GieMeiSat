@@ -1,0 +1,445 @@
+\subsection{The 1-mesa special case}
+\label{sec:1-mesa}
+
+The case of the stability of a one mesa solution with Neumann boundary conditions will now by considered. This has to be done separately as the Floquet theory used in the $K-$ mesa case is for $j=1,\cdots,K-1$, and so does not include the case for $K=1$.
+
+The analysis is analogous to what was previously done for $K-$mesas, and we will start at \eqref{eqn:lam}, which we write as
+% 
+\begin{equation}
+% \label{eqn:lam}
+	\begin{split}
+	\Ep^{-1}\bar{\lA}\kA_0\begin{pmatrix}c_+\\c_-\end{pmatrix}
+   &=
+	\begin{pmatrix} -\psi(l) \\ \psi(-l) \end{pmatrix}
+	 +v_x(l) \begin{pmatrix}c_+\\c_-\end{pmatrix}\\
+	\begin{pmatrix}c_+\\c_-\end{pmatrix},
+	\end{split}
+\end{equation}
+% 
+with 
+% 
+\[
+  v_x(l) = \left(\frac{\Ep}{\DD}\right)\frac{g_-g_+L}{g_--g_+},
+\]
+% 
+and $\psi(x)$ satisfies
+% 
+\begin{equation}
+\label{eqn:psi2}
+\begin{split}
+  \psi(x)_{xx}-\sI^2\psi &= \frac{c_+\Ep}{\DD}(g_+-g_-)\dE(x-l) - \frac{c_-\Ep}{\DD}(g_+-g_-)\dE(x+l),\\
+  &\psi'(-L) = \psi'(L) = 0.
+\end{split}
+\end{equation}
+% 
+
+Analogous with \eqref{eqn:psi_full}, we obtain that 
+% 
+\begin{equation*}
+% \label{eqn:psi_full}
+	\begin{split}
+	\psi(x) &= \left\{
+	\begin{matrix}
+	  \psi(-l)\dfrac{\cosh[\sI_-(x+L)]}{\cosh[\sI_-(L-l)]},&-L<x<-l,\\
+	  \psi(-l)\dfrac{\sinh[\sI_+(l-x)]}{\sinh(2\sI_+l)} + \psi(l)\dfrac{\sinh[\sI_+(x+l)]}{\sinh(2\sI_+l)},&-l<x<l,\\
+	  \psi(l)\dfrac{\cosh[\sI_-(L-x)]}{\cosh[\sI_-(L-l)]},&l<x<L,\\
+	\end{matrix}\right.
+	\end{split}
+\end{equation*}
+% 
+with $s = \frac{\Ep}{\DD}(g_+-g_-)$.
+
+
+The unknowns $\psi(\pm l)$ are to be found by satisfying the jump conditions $\Big.\psi_x\Big|_{-l^-}^{-l^+} = - c_-s$, and $\Big.\psi_x\Big|_{l^-}^{l^+} = c_+s$, hence we get
+% 
+\begin{equation*}
+% \label{eqn:psi_full}
+	\begin{split}
+	  \psi(l)\big[\sI_-\tanh[\sI_-(L-l)] + \sI_+\coth(2\sI_+l)\big] - \psi(-l)\sI_+\csch(2\sI_+l) &= -c_+s,\\
+	  \psi(l)\sI_+\csch(2\sI_+l) - \psi(-l)\big[\sI_+\coth(2\sI_+l)  + \sI_-\tanh[\sI_-(L-l)]\big] &= -c_-s.
+	\end{split}
+\end{equation*}
+% 
+
+We can write this as the linear system
+% 
+\[
+  \begin{pmatrix} d&e\\e&d \end{pmatrix}\begin{pmatrix} \psi(l)\\-\psi(-l) \end{pmatrix} = 
+  -s \begin{pmatrix} c_+\\c_- \end{pmatrix},\qquad
+  G \equiv \begin{pmatrix} d&e\\e&d \end{pmatrix},
+\]
+% 
+where
+% 
+\[
+  \begin{split}
+    d&\equiv \sI_-\tanh[\sI_-(L-l)] + \sI_+\coth(2\sI_+l),\\
+	e&\equiv \sI_+\csch(2\sI_+l).
+  \end{split}
+\]
+% 
+
+Inverting $G$ and substituting into \eqref{eqn:psi2}, we get
+% 
+\begin{equation*}
+% \label{eqn:psi_full}
+	\begin{split}
+	  \frac{\Ep^{-1}\bar{\lA}\kA_0}{s}\begin{pmatrix} c_+\\c_- \end{pmatrix} = \frac{v_x(l)}{s}\begin{pmatrix} c_+\\c_- \end{pmatrix} + G^{-1}\begin{pmatrix} c_+\\c_- \end{pmatrix},
+	\end{split}
+\end{equation*}
+% 
+with $v_x(l)/s$ as in \eqref{eqn:vx},
+% 
+\[
+  \frac{v_x(l)}{s} = \frac{\Ep}{\DD}\frac{g_-g_+L}{g_+-g_-}\frac{\DD}{\Ep(g_+-g_-)} = \frac{g_-g_+L}{(g_+-g_-)^2} = \left(1-\frac{L}{l} \right)\frac{l^2}{L^2}L,
+\]
+% 
+and similarly,
+% 
+\[
+  \frac{\Ep^{-1}\bar{\lA}\kA_0}{s} = \frac{\Ep^{-1}\bar{\lA}\kA_0}{(\Ep/\DD)(g_+-g_-)} = - \frac{\DD}{\Ep^2g_-}\bar{\lA}\kA_0\left(\frac{l}{L}\right).
+\]
+% 
+
+Putting it all together, we conclude that
+% 
+\begin{equation}
+\label{eqn:general_lambda}
+  G^{-1}\begin{pmatrix} c_+\\c_- \end{pmatrix} + \left(1-\frac{L}{l} \right)\frac{l^2}{L^2}L\begin{pmatrix} c_+\\c_- \end{pmatrix} = - \frac{\DD}{\Ep^2g_-}\bar{\lA}\kA_0\left(\frac{l}{L}\right)\begin{pmatrix} c_+\\c_- \end{pmatrix},
+\end{equation}
+% 
+with 
+% 
+\[
+  G^{-1} = \frac{1}{d^2-e^2}\begin{pmatrix} d&-e\\-e&d \end{pmatrix}.
+\]
+%
+
+Thus, the stability of a single mesa is governed by \eqref{eqn:general_lambda}. 
+
+\begin{remark}
+As a sanity check, we need to show that \eqref{eqn:general_lambda} evaluated for the GMS system yields an equivalent equation as the matrix problem in equation $(5.15)$ of \cite{kolokolnikov_stability_2005}. 
+
+Similarly, we also need to show that the general $K-$mesa matrix problem given in \eqref{eqn:ceqn1} is also equivalent in the GMS case to the previously computed system in \eqref{eqn:Kmesa_gms}.
+\end{remark}
+
+We have from $(5.15)$ of \cite{kolokolnikov_stability_2005} that
+% 
+\begin{equation}
+\label{eqn:lam_old}
+  \left[\frac{L}{2}(1-L)I-\hat{G}^{-1} \right]\hat{c}=\frac{\aL}{\Ep^2}\bar{\lA}\hat{c},\qquad\text{with }\hat{c} = \begin{pmatrix} c_l\\c_r \end{pmatrix},
+\end{equation}
+% 
+where $L$ is the width of the mesa, and the domain has constant length 1; and
+% 
+\[
+  \hat{G}^{-1} = \frac{1}{d^2-e^2}\begin{pmatrix} d&e\\e&d \end{pmatrix},\qquad \aL\equiv\frac{2\bE L\DD}{w_+^2},\qquad \beta = \int_{-\infty}^{\infty}w'^2dy.
+\]
+%
+
+\begin{remark}
+Notice that in the formulation for $\vec{c}$ in \eqref{eqn:phi_aprox1} and \eqref{eqn:phi_aprox2}, when compared to $\hat{c}$, we have that $c_l=c_-$, but $c_r=-c_+$.
+
+Rewriting \eqref{eqn:lam_old} in the notation we have been using, we have that $L=2l$ is the width of the mesa, and we have
+\end{remark}
+ % 
+\begin{equation}
+\label{eqn:lam_old2}
+  \left[\hat{G}^{-1}-l(1-2l)I \right]\hat{c}=-\frac{\aL}{\Ep^2}\bar{\lA}\hat{c},
+\end{equation}
+% 
+with $\aL =\frac{2\bE(2l)\DD}{w_+^2}$.
+
+Now, in our formulation, if we restrict it to the case $L=1/2$ (domain length 1), we obtain
+ % 
+\begin{equation}
+\label{eqn:lam_new1}
+  \left[{G}^{-1}-l(1-2l)I \right]\vec{c}=-\frac{\DD\kA_0(2l)}{\Ep^2g_-}\bar{\lA}\vec{c}.
+\end{equation}
+% 
+
+For the left hand side, we expand \eqref{eqn:lam_old2} as
+ % 
+\begin{equation*}
+\begin{split}
+% \label{eqn:lam_old2}
+  -\frac{1}{d^2-e^2}\left[dc_l+ec_r \right]+l(1-2l)c_l &= \frac{\aL}{\Ep^2}\bar{\lA}c_l,\\
+  \frac{1}{d^2-e^2}\left[dc_r+ec_l \right]-l(1-2l)c_r &= -\frac{\aL}{\Ep^2}\bar{\lA}c_r.
+\end{split}
+\end{equation*}
+% 
+
+Interchanging the rows, we can write this as
+% 
+\[
+  \frac{1}{d^2-e^2}\begin{pmatrix} d&-e\\-e&d \end{pmatrix}\begin{pmatrix} c_r\\-c_l \end{pmatrix} -l(1-2l)\begin{pmatrix} c_r\\-c_l \end{pmatrix} = -\frac{\aL}{\Ep^2}\bar{\lA}\begin{pmatrix} c_r\\-c_l \end{pmatrix},
+\]
+% 
+and since $c_r = -c_+$, and $c_l = c_-$, this system is equivalent to \eqref{eqn:lam_new1}, provided that the right hand sides match, and that the $d$ and $e$ values are consistent.
+
+Thus, we only need to show that 
+% 
+\[
+  \aL = \frac{4\bE l\DD}{w_+^2}= \frac{2l\kA_0\DD}{g_-},
+\]
+% 
+or, more succinctly, that
+% 
+\[
+  \frac{2\bE}{w_+^2}=\frac{\kA_0}{g_-}, 
+\]
+% 
+where
+% 
+\[
+  \bE = \int_{-\infty}^{\infty}w'^2dy,\quad U_0=\VV w(y),\quad \kA_0 = \frac{\int_{-\infty}^{\infty}(U_0')^2dy}{\int_{u_-}^{u_+}f_vdu},\quad g_- = g(u_-,\VV).
+\]
+
+For the GMS model we have that 
+% 
+\[
+  \begin{split}
+    g(u,v) &= -v+u^2,\\
+	f(u,v) &= -u + \frac{u^2}{v(1+\kA u^2)},\qquad\text{and }u_-=0.
+  \end{split}
+\]
+% 
+
+When $v=\VV$, we integrate
+% 
+\[
+  \int_{u_-}^{u_+}f_vdu = -\int_0^{u_+} \frac{u^2}{\VV^2(1+\kA u^2)}du 
+\]
+% 
+
+Now, we substitute $u=\VV w$, $u_+ = \VV w_+$, and get
+% 
+\[
+  \int_{u_-}^{u_+}f_vdu = -\VV\int_0^{w_+} \frac{w^2}{1+b_0 w^2}dw,\qquad \text{with }b_0=\kA\VV^2 
+\]
+% 
+
+From the definition of the system in \eqref{eqn:o-w_eqn}, we have that
+% 
+\[
+  w'' - w + \frac{w^2}{1+b_0w^2}=0.
+\]
+% 
+
+Multiplying by $w'$ and integrating from $y=-\infty$ to $y=\infty$, we get
+% 
+\[
+\begin{split}
+  \Big.\frac{w'^2}{2}\Big|_{-\infty}^{\infty} &- \Big.\frac{w^2}{2}\Big|_{-\infty}^{\infty} + \int_{-\infty}^{\infty} \frac{w^2}{1+b_0 w^2}\frac{dw}{dy}dy=0,\\
+  &-\frac{w_+^2}{2} + \int_0^{w_+} \frac{w^2}{1+b_0 w^2}dw = 0.
+\end{split}
+\]
+% 
+
+Hence
+% 
+\[
+  \int_0^{w_+} \frac{w^2}{1+b_0 w^2}dw = \frac{w_+^2}{2},
+\]
+% 
+and we can conclude that
+% 
+\[
+  \int_{u_-}^{u_+}f_vdu = -\VV\frac{w_+^2}{2}.
+\]
+% 
+
+We also calculate that
+% 
+\[
+  \int_{-\infty}^{\infty}(U_0')^2dy = \VV^2\int_{-\infty}^{\infty}(w')^2dy,\qquad g_- = g(u_-,\VV)=-\VV.
+\]
+% 
+
+We conclude that
+% 
+\[
+  \frac{\kA_0}{g_-} = \frac{\VV^2\int_{-\infty}^{\infty}(w')^2dy}{-\VV(-\VV w_+^2/2)} = \frac{2}{w_+^2}\int_{-\infty}^{\infty}(w')^2dy.
+\]
+
+Now, the only thing remaining to ensure compatibility between our result and $(5.15)$ of \cite{kolokolnikov_stability_2005}(??? Their formula for $\tH$ doesn't include the $\lA$ terms???) is to show that the decay rates $\sI_{\pm}$ and $\tH_{\pm}$ are the same.
+
+We have from \eqref{eqn:sigma} that
+% 
+\begin{equation*}
+\begin{split}
+	&\quad\sI_{\pm}^2 = m^2  + \frac{\Ep}{\DD}(\kA_{\pm} + \tau\lA), \text{ with}\\
+	\kA_+ &\equiv - \left(g_v^+ - \frac{f_v^+}{f_u^+}g_u^+ \right)>0,\\
+	\kA_- &\equiv - \left(g_v^- - \frac{f_v^-}{f_u^-}g_u^- \right)>0,
+\end{split}
+\end{equation*}
+% 
+and from \eqref{eqn:phi_asym} that $\tH_{\pm}$ is
+% 
+\begin{equation*}
+	\begin{split}
+	\tH
+   = \left\{
+	\begin{matrix}
+		\tH_-\equiv\left(m^2+\frac{\Ep(1+\tau\lA)}{\DD}\right)^{1/2},\hspace{0.85in}\\
+		\tH_+\equiv\left(m^2+\frac{\Ep(1+\tau\lA)}{\DD}\left(1+\frac{2w_+}{l(w_+-2)} \right)\right)^{1/2}
+	\end{matrix}\right.
+	\end{split}
+\end{equation*}
+% 
+
+We have that, for the GMS system,
+% 
+\[
+  u_-=0\quad u_+ = \VV w_+,\quad v=\VV,\quad\text{where }\VV = \frac{1}{w_+^22l}.
+\]
+% 
+
+Now, we have that $g_u^- = 0$, and $g_v^- = -1$, hence $\kA_- = 1$, and thus $\tH_- = \sI_-$.
+
+Similarly, (??? I've kept the original notation with $\kA$ instead of $\mu$, but at one point I guess I'll have to change it???) since $u_+$ satisfies $f(u_+,\VV)=0$, and thus
+% 
+\[
+  u_+ = \VV(1+\kA u_+^2),
+\]
+% 
+we have,
+% 
+\[
+\begin{split}
+\begin{aligned}
+  g_u^+ &= 2u_+, && f_u^+ = -1+\frac{2u_+}{\VV(1+\kA u_+^2)^2} = -1 + \frac{2}{1+\kA u_+^2} = -1+\frac{2\VV}{u_+},\\
+  g_v^+ &= -1,&& f_v^+ = -\frac{u_+^2}{\VV^2(1+\kA u_+^2)} = -\frac{u_+}{\VV}.
+\end{aligned}
+\end{split}
+\]
+% 
+
+We have then
+% 
+\[
+\begin{split}
+  \kA_+ &= -\left(g_v^+ - \frac{f_v^+}{f_u^+}g_u^+ \right) = -\left(-1 +  \frac{u_+/\VV}{\frac{2\VV-u_+}{u_+}}2u^+ \right) = 1+\frac{2u_+^3}{\VV u_+-2\VV^2}\\
+  & = 1+\frac{2\VV w_+^3}{w_+-2} = 1+\frac{ w_+}{l(w_+-2)}.
+\end{split}
+\]
+ 
+This shows that $\sI_{\pm} = \tH_{\pm}$, hence the GMS results in $(5.15)$ of \cite{kolokolnikov_stability_2005} are consistent with ours, and thus constitute a particular case of our results.
+
+Our final result is that on a domain $[-L,L]$, with mesa width $2l$, we have
+% 
+\begin{equation}
+\label{eqn:general_lambda2}
+  G^{-1}\begin{pmatrix} c_+\\c_- \end{pmatrix} + \left(1-\frac{L}{l} \right)\frac{l^2}{L^2}L\begin{pmatrix} c_+\\c_- \end{pmatrix} = - \frac{\DD}{\Ep^2g_-}\bar{\lA}\kA_0\left(\frac{l}{L}\right)\begin{pmatrix} c_+\\c_- \end{pmatrix},
+\end{equation}
+% 
+where
+% 
+\[
+\begin{split}
+\begin{aligned}
+  G^{-1} &= \frac{1}{d^2-e^2}\begin{pmatrix} d&-e\\-e&d \end{pmatrix},\\
+  d&= \sI_-\tanh[\sI_-(L-l)] + \sI_+\coth(2\sI_+l),\\
+  e&= \sI_+\csch(2\sI_+l),\\
+  \quad\sI_{\pm}^2 &= m^2  + \frac{\Ep}{\DD}(\kA_{\pm} + \tau\lA),\\
+  \kA_+ &= - \left(g_v^+ - \frac{f_v^+}{f_u^+}g_u^+ \right)>0,\\
+  \kA_- &= - \left(g_v^- - \frac{f_v^-}{f_u^-}g_u^- \right)>0,\\
+  \bar{\lA} &= \lA + \Ep^2m^2,\\
+  g_- &= g(u_-,\VV),\\
+  \kA_0&=\dfrac{\int_{-\infty}^{\infty}(U_0')^2 dy}{\int_{u_-}^{u_+}f_vdu}.
+\end{aligned}
+\end{split}
+\]
+%
+
+It is now convenient to define
+% 
+\[
+  \vA = -\frac{\DD}{g_-}\kA_0\left(\frac{l}{L} \right).
+\]
+% 
+Then, with $I$ the identity matrix, we can rewrite \eqref{eqn:general_lambda2} as
+% 
+\[
+  \left(G^{-1} + \left(1-\frac{L}{l} \right)\frac{l^2}{L^2}LI - m^2\vA I\right)\vec{c} = \frac{\vA}{\Ep^2}\lA\vec{c}
+\]
+% 
+
+The eigenpairs of the system are then
+% 
+\begin{equation}
+\begin{split}
+\label{eqn:lam_pm}
+  \lA_{\pm} &= \frac{\Ep^2}{\vA}\left[\oM_{\pm} + \left(1-\frac{L}{l} \right)\frac{l^2}{L^2}L - m^2\vA \right],\\
+  \vec{c}_{\pm} &= \begin{pmatrix} 1\\ \mp1 \end{pmatrix},
+\end{split}
+\end{equation}
+% 
+with $\oM_{\pm}$ the eigenvalues of $G^{-1}$, given by
+% {
+\[
+  \begin{split}
+    \oM_+ &= \frac{1}{d-e} = [\sI_-\tanh[\sI_-(L-l)]+\sI_+\tanh(l\sI_+)]^{-1},\\
+	\oM_- &= \frac{1}{d+e} = [\sI_-\tanh[\sI_-(L-l)]+\sI_+\coth(l\sI_+)]^{-1},\\
+  \end{split}
+\]
+
+The $(\lA_+,\vec{c}_+)$ eigenpair corresponds then to the breather mode, and the $(\lA_-,\vec{c}_-)$ is the zigzag mode.
+
+\begin{itemize}
+  \item{ The case $m\neq0$, $\tau=O(1)$:
+
+	We have that irrespective of the sign of $\vA$, for $m$ sufficiently large both, we will have that $\lA_{\pm}<0$, i.e., the stripe is stable to short wavelength perturbations in the y-direction.
+
+	We have that $\oM_{\pm}>0$, and in fact as $L\rightarrow\infty$ we have $\oM_{\pm}\sim\frac{1}{2m}$. Given that $1-L/l<0$, with the ratio $L/l$ remains constant when only the domain length $L$ is increased, we have that on a small enough domain the stripe will always be stable, and that there will be a critical length $L$ beyond which the stripe will become unstable.
+}
+
+  \item{ The case $m=0$, $\tau=O(1)$:
+
+	When $\Ep\rightarrow0$ we have that $\sI_{\pm}\rightarrow0$. For the zigzag mode ($\lA_-$), we have that
+	\[
+	  \sI_+\coth(\sI_+l)=\frac{\sI_+}{\tanh(\sI_+l)}\sim\frac{1}{l(1-\frac{\sI^2l^2}{3})}\sim\frac{1}{l}+O(\sI_+^2),
+	\]
+	and since $\sI_-\tanh[\sI_-(L-l)]\sim\sI_-^2(L-l)$, we have
+	\[
+	  \oM_-\sim \left[\sI_-^2(L-l) + \frac{1}{l} + O(\sI_+^2) \right]^{-1} = l + O(\sI_+^2,\sI_-^2).
+	\]
+
+	We conclude that for $m=0$ we have
+	\begin{equation*}
+	  \lA_-\simeq \frac{\Ep^2}{\vA}\left[\left(1 - \frac{L}{l} \right)\frac{l^2}{L^2}L + l + O(\sI_+^2,\sI_-^2)\right] \sim \frac{\Ep^2}{\vA}\left[\left(\frac{l^2}{L^2}\right)L + O(\sI_+^2,\sI_-^2)\right],
+	\end{equation*}
+	and stability is guaranteed for this mode when $\vA<0$
+
+\begin{remark}
+  When $\tau\ll1$ this analysis is consistent provided that the term in $\oM_{\pm}$ $\Ep\tau\lA\ll1$. Since this shows that $\lA=O(\Ep^2)$, the condition for self-consistency is that $\tau\ll O(\Ep^3)$.
+\end{remark}
+
+	Now, for the breather mode $\lA_+$, we have that
+	\[
+	  \oM_+\sim \frac{1}{\sI_-^2(L-l) + \sI_+^2l} = \frac{1}{\sI_-^2L + l(\sI_+^2-\sI_-^2)}.
+	\]
+
+	Since $\sI_-^2 = \frac{\Ep}{\DD}(\kA_-+\tau\lA)$, and $\sI_+^2-\sI_-^2 = \frac{\Ep}{\DD}(\kA_+-\kA_-)$, we have that
+	\[
+	  \oM_+^2\sim\frac{\DD}{\Ep L\left[(\kA_-+\tau\lA) + \frac{l}{L}(\kA_+-\kA_-) \right]}.
+	\]
+	
+	In terms of the breather eigenvalue, this yields that
+	\begin{equation*}
+	  \lA_+ = \frac{\Ep^2}{\vA}\left[\oM_+ + \left(1-\frac{L}{l} \right)\frac{l^2}{L^2}L \right] \sim \frac{\Ep\DD}{L\vA}\frac{1}{(\kA_-+\tau\lA) + \frac{l}{L}(\kA_+-\kA_-)}.
+	\end{equation*}
+
+	Notice again that since $l/L<1$ we have stability of this mode provided that $\vA<0$.
+
+\begin{remark}
+  Notice that the breather eigenvalue $\lA_+ = O(\Ep)$, while the zigzag eigenvalue $\lA_-=O(\Ep^2)$.
+
+  The consistency condition for the breather case is that $0<\tau<O(\Ep^{-1})$, since $\lA_+=O(\Ep,\tau\lA)$.
+\end{remark}
+
+}
+\end{itemize}
+
+
+

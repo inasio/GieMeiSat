@@ -1,0 +1,11 @@
+
+#==============
+# AUTO Demo brf
+#==============
+
+print "\n***Clean the directory***"
+import os,glob
+dl('schnak')
+cl()
+for f in glob.glob('schnak.mod'):
+    os.remove(f)

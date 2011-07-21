@@ -1,0 +1,780 @@
+\subsection{Stability of the K-mesa solution to perturbations along the y-axis}
+
+
+We start by considering a one-mesa steady-state solution to the domain $[-L,L]\times[0,d_0]$. We consider small perturbations of the form
+% 
+\begin{equation*}
+% \label{eqn:pert}
+\begin{split}
+\begin{aligned}
+  u(x,y) &= u_e(x) + e^{\lA t}e^{imy}\phi(x),\\
+  v(x,y) &= v_e(x) + e^{\lA t}e^{imy}\psi(x),
+\end{aligned}
+\end{split}
+\end{equation*}
+% 
+which yield the eigenvalue problem
+% 
+\begin{equation}
+\label{eqn:eigen_uv}
+\begin{split}
+  \lA \phi &= \Ep^2\phi_{xx} - \Ep^2m^2\phi + f_u(u_e,v_e)\phi + f_v(u_e,v_e)\psi,\\
+  \tau\lA \psi &= \frac{\DD}{\Ep}\psi_{xx} - \frac{\DD}{\Ep}m^2\psi + g_u(u_e,v_e)\phi + g_v(u_e,v_e)\psi.
+\end{split}
+\end{equation}
+% 
+
+
+We now multiply the $\phi$ equation in \eqref{eqn:eigen_uv} by $u_x$ and integrating by parts on $[0,L]$. Given that the equilibrium problem satisfies $\Ep^2u_{xx} + f(u,v) = 0$, we have then that
+% 
+\begin{equation*}
+% \label{eqn:operator_u}
+\begin{aligned}
+	\Ep^2(u_x)_{xx} + f_uu_x + f_vv_x = 0.
+\end{aligned}
+\end{equation*}
+% 
+
+We define the operator $\LL_{\Ep}u$ by
+% 
+\begin{equation*}
+   \LL_{\Ep}u\equiv \Ep^2u_{xx} + f_u u,
+\end{equation*}
+% 
+and we have then that the equilibrium problem satisfies
+% 
+\[
+   \LL_{\Ep}u_x = \Ep^2(u_x)_{xx} + f_u u_x = -f_v v_x,
+\]
+% 
+and from \eqref{eqn:eigen_uv} we have then that
+% 
+\[
+   \LL_{\Ep}\phi +f_v\psi = \bar{\lA}\phi.
+\]
+% 
+
+Integrating first on $-L<x<0$, we have
+% 
+\[
+ \int_{-L}^0(u_x\LL_{\Ep}\phi - \phi\LL_{\Ep}u_x)dx = \Big.\Ep^2[u_x\phi_x-\phi u_{xx}]\Big|_{-L}^0.
+\]
+%  
+
+The two terms on the left side of the integral each equate to
+% 
+\begin{equation*}
+\begin{split}
+	\int_{-L}^0u_x\LL_{\Ep}\phi dx &= \bar{\lA}\int_{-L}^0u_x\phi dx - \int_{-L}^0u_xf_v\psi dx\\
+	\int_{-L}^0\phi\LL_{\Ep}u_x dx &= -\int_{-L}^0\phi f_vv_x.
+\end{split}
+\end{equation*}
+% 
+
+Putting it all together leads to 
+% 
+\[
+  \bar{\lA}\int_{-L}^0u_x\phi dx - \int_{-L}^0u_xf_v\psi dx + \int_{-L}^0\phi f_vv_x = \Big.\Ep^2[u_x\phi_x-\phi u_{xx}]\Big|_{-L}^0.
+\]
+% 
+
+We now make use of the following facts: $u_x(-L)=u_x(0)=0$ from Neumann boundary conditions and even symmetry considerations, respectively. Both $\psi(x)$ and $v_x(x)$ are approximately constant, hence $\psi(x)\cong \psi(-l)$, $v_x(x)\cong v_x(-l)$. Since $u_x(x)$ is localized near the interface, we have that 
+% 
+\[
+  \int_{-L}^0u_x\phi dx = c_-\int_{-L}^0u_x^2dx.
+\]
+% 
+
+This reduces the equation to
+% 
+\begin{equation*}
+\begin{split}
+	\bar{\lA}c_-\int_{-L}^0u_x^2 dx &\cong \psi(-l)\int_{-L}^0u_xf_vdx - v_x(-l)c_-\int_{-L}^0f_vu_xdx - \Big.\Ep^2[\phi u_{xx}]\Big|_{-L}^0,\\
+	\bar{\lA}c_-\int_{-L}^0u_x^2 dx &\cong \left[\psi(-l) - v_x(-l)c_-\right]\int_{-L}^0u_xf_vdx - \Big.\Ep^2[\phi u_{xx}]\Big|_{-L}^0,
+\end{split}
+\end{equation*}
+% 
+
+We now estimate 
+% 
+\begin{equation*}
+\begin{split}
+\begin{aligned}
+\Big.\phi \Big|_{x=-L} &= O(1),\qquad \Big.\phi \Big|_{x=0} = O(1), \text{ as well as} \\
+\Big.u_{xx} \Big|_{x=-L} &= O(\Ep), \quad\Big.u_{xx} \Big|_{x=0} = O(\Ep),
+\end{aligned}
+\end{split}
+\end{equation*}
+% 
+therefore we have that $\Big.\Ep^2(\phi u_{xx})\Big|_{-L}^0 = O(\Ep^3)$.
+
+Changing variables to $y = \Ep^{-1}(x+l)$, we have that
+% 
+\begin{equation*}
+\begin{split}
+	\int_{-L}^0u_xf_vdx\sim \int_{-\infty}^{\infty}U_0'(y)f_vdy = \int_{u_-}^{u_+}f_vdu,
+\end{split}
+\end{equation*}
+% 
+since $u\rightarrow u_{\pm}$ when $y\rightarrow\pm\infty$. Similarly, we can make the same change of variables to have
+% 
+\begin{equation*}
+\begin{split}
+	\int_{-L}^0u_x^2dx\sim \int_{-L}^{0}\frac{1}{\Ep^2}(U_0')^2dx = \frac{1}{\Ep}\int_{-\infty}^{\infty}(U_0')^2dy.
+\end{split}
+\end{equation*}
+% 
+
+This yields the simplified equation
+% 
+\begin{equation*}
+\begin{split}
+	\bar{\lA}c_-\int_{-\infty}^{\infty}(U_0')^2 dy \sim \Ep\left[\psi(-l) - c_-v_x(-l)\right]\int_{u_-}^{u_+}f_vdu + O(\Ep^4).
+\end{split}
+\end{equation*}
+% 
+
+We now define 
+% 
+\begin{equation*}
+\begin{split}
+	\kA_0 \equiv \frac{\int_{-\infty}^{\infty}(U_0')^2 dy}{\int_{u_-}^{u_+}f_vdu}.
+\end{split}
+\end{equation*}
+% 
+
+The integral in the denominator, $\int_{-\infty}^{\infty}(U_0')^2dy$, can be further estimated by integrating the $U$ equation in \eqref{eqn:gms_layer}
+% 
+\begin{equation*}
+\label{eqn:beta}
+\begin{split}
+  \int_{-\infty}^{\infty}U_{0y}^2(y)dy \sim \int_{0}^{u_+}U_{0y}^2\frac{1}{U_{0y}}dU_0 = \int_0^{u_+}\sqrt{2\FF(u)}du,
+\end{split}
+\end{equation*}
+% 
+with $\FF(u)=-\int_0^uf(s)ds$.
+
+
+then, 
+% 
+\begin{equation*}
+\begin{split}
+	\bar{\lA}\kA_0c_-\sim\Ep\left[\psi(-l) - v_x(-l)c_-\right]
+\end{split}
+\end{equation*}
+% 
+
+Repeating the procedure for the $0<x<L$ region, we get the analogous equation
+% 
+\begin{equation*}
+\begin{split}
+	\bar{\lA}\kA_0c_+\sim\Ep\left[-\psi(l) + v_x(l)c_+\right],
+\end{split}
+\end{equation*}
+% 
+with the sign change from the fact that with a change of variables $y=\Ep^{-1}(x-l)$ and the transition layer at $x=l$, in this region we have $u\rightarrow u_{\pm}$ when $y\rightarrow\mp\infty$.
+
+We recall from \eqref{eqn:v1} and \eqref{eqn:uv_outer2} that $v_x(l) \sim \frac{\Ep}{\DD}g_-(L-l)$, 
+and we also know from \eqref{eqn:l_eqn} that $l = \frac{g_-L}{g_--g_+}$, therefore
+% 
+\begin{equation*}
+\begin{split}
+	v_x(l) = -\left(\frac{\Ep}{\DD}\right)\frac{g_-g_+L}{g_--g_+}.
+\end{split}
+\end{equation*}
+% 
+
+Furthermore, since $v(x)$ is an even function, we have that $v_x(-l) = -v_x(l)$.
+
+We can collect both equations into the following linear system
+% 
+\begin{equation}
+\label{eqn:lam}
+	\begin{split}
+	\Ep^{-1}\bar{\lA}\kA_0\begin{pmatrix}c_+\\c_-\end{pmatrix}
+   &\cong
+	\begin{pmatrix} -\psi(l) \\ \psi(-l) \end{pmatrix}
+	 +v_x(l) \begin{pmatrix}c_+\\c_-\end{pmatrix}\\
+   &\cong
+	\begin{pmatrix} -\psi(l) \\ \psi(-l) \end{pmatrix}
+	 - \left(\frac{\Ep}{\DD}\right)\frac{g_-g_+L}{g_--g_+}
+	\begin{pmatrix}c_+\\c_-\end{pmatrix}
+	\end{split}
+\end{equation}
+% 
+\begin{remark}
+The goal is to find $\lA$; to establish the conditions under which the system is linearly stable or unstable it is sufficient to determine the sign of $\lA$. To fully solve the system in \eqref{eqn:lam} we need to find $\psi(\pm l)$, and this has to be done by finding the equilibrium solution for the second equation in \eqref{eqn:eigen_uv}:
+% 
+\begin{equation}
+\label{eqn:psi_eq}
+\begin{split}
+	\psi_{xx} - m^2\psi + \frac{\Ep}{\DD}(g_u\phi + g_v\psi)=0.
+\end{split}
+\end{equation}
+% 
+\end{remark}
+
+\begin{remark}
+At this point we want to consider solutions consisting of $K-$mesas. The one mesa problem in $-L<x<L$ can be extended to the $K-$mesa case on $-L<x<(2K-1)L$ by means of Floquet theory. This can be accomplished for the $\psi$ equation by using the following boundary conditions:
+% 
+\begin{equation*}
+  \psi((2j-1)L) = z^j\psi(-L),\qquad  \psi'((2j-1)L) = z\psi'(-L),\qquad\text{for }j=1,\cdots,K.
+\end{equation*}
+% 
+
+At the boundary of the whole interval $[-L,(2K-1)L]$, we have $\psi((2K-1)L) = z^K\psi(-L)$. We can get standard periodic boundary conditions then by choosing $z^K=1$.
+
+Systems with homogeneous Neumann boundary conditions can be extended to periodic boundary conditions by adding an even reflection on one of the boundaries, yielding a system on twice the original domain. By the same token, a system with periodic boundary conditions, with even symmetry, can be folded in half into an equivalent system with Neumann boundary conditions. Applying this idea to the extended $K-$mesa system implies that we have to consider $2K$ mesas in the periodic case, and thus $z = e^{2\pi ik/2K},\quad k = 0,\hdots,K-1$. 
+
+The case for $K=1$ has to be considered separately, and will be discussed in detail in \S~\ref{sec:1-mesa}.
+\end{remark}
+
+Since $u(x)$ is approximately constant except at the interfaces, we can approximate the eigenfunction $\phi\sim c_{\pm}u_x$, and similarly $\psi\sim\psi(\pm l)$ when $x\sim\pm l$.
+
+In the flat regions $|x|<l$ and $l<|x|<L$ we have that 	$f_u\phi + f_v\psi = \lA\phi$. We will show later that $\lA\ll 1$, and this can be used to approximate
+% 
+\begin{equation*}
+\begin{split}
+	\phi&\sim -\frac{f_v^+}{f_u^+}\psi\qquad\text{for }|x|<l,\\
+	\phi&\sim -\frac{f_v^-}{f_u^-}\psi\qquad\text{for }l<|x|<L.
+\end{split}
+\end{equation*}
+% 
+
+Substituting it into \eqref{eqn:psi_eq}, we end up with the ODE
+% 
+\begin{equation}
+\label{eqn:psi_aprox}
+\begin{split}
+	\psi_{xx} - \sI_{\pm}^2\psi = 0,
+\end{split}
+\end{equation}
+% 
+which is defined everywhere except at the interfaces, and where
+% 
+\begin{equation}
+\label{eqn:sigma}
+\begin{split}
+	&\quad\sI_{\pm}^2 = m^2  + \frac{\Ep}{\DD}\kA_{\pm} + \frac{\Ep\tau\lA}{\DD}, \text{ with}\\
+	\kA_+ &\equiv - \left(g_v^+ - \frac{f_v^+}{f_u^+}g_u^+ \right)>0,\qquad \text{when }|x|<l \\
+	\kA_- &\equiv - \left(g_v^- - \frac{f_v^-}{f_u^-}g_u^- \right)>0,\qquad \text{when }l<|x|<L,
+\end{split}
+\end{equation}
+% 
+and as before, we are using the notation $f_v^+\equiv \pAr vf(u^+,\VV)$.
+
+\begin{remark}
+	We will eventually show that for $m\neq0$ we have that $\lA=O(\Ep^2)$, and that $\lA=O(\Ep)$ for $m=0$. It is tempting to disregard the $\tau\lA\Ep$ term in \eqref{eqn:eigen_uv}, however, we will keep this term in order to analyze the case when $\tau\rightarrow\infty$.
+\end{remark}
+
+Since $\psi$ is smooth, the jump across $x=\pm l$ can be estimated in the sense of distributions through the term $g_u\phi$. We start with the jump across $x=l$, with the standard inner change of variables $y=\Ep^{-1}(x-l)$,
+% 
+\begin{equation}
+\label{eqn:phi_aprox1}
+\begin{split}
+	g_u\phi\sim g_u c_+u_x\rightarrow c_+\int_{l^-}^{l^+}g_uu_xdx 
+	&\sim c_+\int_{-\infty}^{+\infty}g_{U_0}U_{0y}dy \\
+	&\sim c_+\int_{u_+}^{u_-}g_{U_0}dU_0\sim c_+(g_- - g_+).
+\end{split}
+\end{equation}
+% 
+
+Similarly, for the jump across $x=-l$, with $y=\Ep^{-1}(x+l)$, we have
+% 
+\begin{equation}
+\label{eqn:phi_aprox2}
+\begin{split}
+	g_u\phi\sim g_u c_-u_x\rightarrow c_-\int_{-l^+}^{-l^-}g_uu_xdx 
+	&\sim c_-\int_{-\infty}^{+\infty}g_{U_0}U_{0y}dy \\
+	&\sim c_-\int_{u_-}^{u_+}g_{U_0}dU_0\sim c_-(g_+ - g_-).
+\end{split}
+\end{equation}
+% 
+
+Therefore, we have
+% 
+\begin{equation*}
+% \label{eqn:phi_aprox3}
+\begin{split}
+	g_u\phi\sim c_+(g_- - g_+)\dE(x-l) + c_-(g_+ - g_-)\dE(x+l),
+\end{split}
+\end{equation*}
+% 
+effectively taking into account the contributions from both interfaces.
+
+We can now write \eqref{eqn:psi_aprox} defined on the whole interval $-L<x<L$ as
+% 
+\begin{equation*}
+% \label{eqn:psi_aprox2}
+\begin{split}
+	\psi_{xx} - \sI_{\pm}^2\psi = \frac{\Ep}{\DD}(g_- - g_+)\big[c_+\dE(x-l) - c_-\dE(x+l)\big],
+\end{split}
+\end{equation*}
+% 
+with the added conditions that the solution has to be continuous across the interfaces at $x=\pm l$; that the jump conditions $\Big.\psi_x\Big|_{-l^+}^{-l^-} = c_-s$, and $\Big.\psi_x\Big|_{l^-}^{l^+} = c_+s$ are satisfied; and that the Floquet boundary conditions $\psi(L) = z\psi(-L)$, and $\psi'(L) = z\psi'(-L)$ are satisfied as well. 
+
+For the jump conditions we have $s = \frac{\Ep}{\DD}(g_--g_+)$
+
+A solution to the system with prescribed continuity across the interfaces is
+% 
+\begin{equation}
+\label{eqn:psi_full}
+	\begin{split}
+	\psi(x) &= \left\{
+	\begin{matrix}
+	  \psi(-l)\dfrac{\cosh[\sI_-(x+L)]}{\cosh[\sI_-(L-l)]} + A_L\sinh[\sI_-(x+l)],&-L<x<-l,\\
+	  \psi(-l)\dfrac{\sinh[\sI_+(l-x)]}{\cosh(2\sI_+l)} + \psi(l)\dfrac{\sinh[\sI_+(x+l)]}{\sinh(2\sI_+l)},&-l<x<l,\\
+	  \psi(l)\dfrac{\cosh[\sI_-(L-x)]}{\cosh[\sI_-(L-l)]} + A_R\sinh[\sI_-(x-l)],&l<x<L,\\
+	\end{matrix}\right.
+	\end{split}
+\end{equation}
+% 
+the four unknowns $A_L, A_R, \psi(l), \psi(-l)$ can be determining by enforcing all four boundary and jump conditions.
+
+We start with the Floquet boundary conditions. The four relevant terms are
+% 
+\begin{equation*}
+\begin{split}
+\begin{aligned}
+	\psi(L) &= \frac{\psi(l)}{\cosh[\sI_-(L-l)]} + A_R\sinh[\sI_-(L-l)],\\
+	z\psi(-L) &= \frac{z\psi(-l)}{\cosh[\sI_-(L-l)]} - zA_L\sinh[\sI_-(L-l)],\\
+	\psi'(L) &= A_R\sI_-\cosh[\sI_-(L-l)],\\
+	z\psi'(-L) &= zA_L\sI_-\cosh[\sI_-(L-l)].\\
+\end{aligned}
+\end{split}
+\end{equation*}
+% 
+
+From the condition on $\psi'(L) = z\psi'(-L)$, it can immediately be seen that $zA_L = A_R$.
+
+From the condition that $\psi(L) = z\psi(-L)$, we get
+% 
+\begin{equation*}
+\begin{split}
+	\frac{\psi(l)-z\psi(-l)}{\cosh[\sI_-(L-l)]} = -2zA_L\sinh[\sI_-(L-l)],
+\end{split}
+\end{equation*}
+% 
+hence
+% 
+\begin{equation}
+\label{eqn:floquet1}
+\begin{split}
+	\psi(l)-z\psi(-l) = -zA_L\sinh[2\sI_-(L-l)]
+\end{split}
+\end{equation}
+% 
+
+For the jump conditions, the four relevant terms are
+% 
+\begin{equation*}
+\begin{split}
+\begin{aligned}
+	\psi_x(l^+) &= -\psi(l)\sI_-\tanh[\sI_-(L-l)] + A_R\sI_-,\\
+	\psi_x(l^-) &=  \psi(l)\sI_+\coth(2\sI_+l) - \psi(-l)\sI_+\csch(2\sI_+l),\\
+	\psi_x(-l^+) &= \psi(l)\sI_+\csch(2\sI_+l) - \psi(-l)\sI_+\coth(2\sI_+l),\\
+	\psi_x(-l^-) &= -\psi(-l)\sI_-\tanh[\sI_-(L-l)] + A_L\sI_-.
+\end{aligned}
+\end{split}
+\end{equation*}
+% 
+
+The two jump conditions, $\psi(l^+) - \psi(l^-) = c_+s$ and $\psi(-l^+) - \psi(-l^-) = - c_-s$, yield
+% 
+\begin{equation*}
+\begin{split}
+\begin{aligned}
+	& -\psi(l)\sI_-\tanh[\sI_-(L-l)] + A_R\sI_- - \\
+	 & \qquad\qquad \psi(l)\sI_+\coth(2\sI_+l) + \psi(-l)\sI_+\csch(2\sI_+l) = c_+s,\\
+	&\psi(-l)\sI_-\tanh[\sI_-(L-l)] + A_L\sI_- -  \\
+	 & \qquad\qquad \psi(l)\sI_+\csch(2\sI_+l) + \psi(-l)\sI_+\coth(2\sI_+l) = c_-s
+\end{aligned}
+\end{split}
+\end{equation*}
+% 
+
+Simplifying things slightly, and using $A_R = zA_L$, we get
+% 
+\begin{equation}
+\label{eqn:psii}
+\begin{split}
+\begin{aligned}
+	& -\psi(l)\big(\sI_-\tanh[\sI_-(L-l)] + \sI_+\coth(2\sI_+l) \big) + \psi(-l)\sI_+\csch(2\sI_+l) = c_+s - zA_L\sI_-,\\
+	& -\psi(l)\sI_+\csch(2\sI_+l) + \psi(-l)\big(\sI_-\tanh[\sI_-(L-l)] + \sI_+\coth(2\sI_+l)\big)  = c_-s - A_L\sI_-
+\end{aligned}
+\end{split}
+\end{equation}
+% 
+
+Putting together \eqref{eqn:psii} and \eqref{eqn:floquet1}, we can express $\psi(\pm l)$ as the solution to the linear system
+% 
+\begin{equation*}
+% \label{eqn:lam}
+	\begin{split}
+	\begin{pmatrix} d&e\\e&d\end{pmatrix}
+	\begin{pmatrix} \psi(l)\\ -\psi(-l)\end{pmatrix}
+   &=
+	-s\begin{pmatrix} c_+ \\ c_- \end{pmatrix}
+	 +\sI_-A_L \begin{pmatrix}z\\1\end{pmatrix},\\
+	\begin{pmatrix} z\\ 1\end{pmatrix}^T
+  \begin{pmatrix} \psi(l)\\ -\psi(-l)\end{pmatrix} &= -A_Lz\sinh[2\sI_-(L-l)]
+	\end{split}
+\end{equation*}
+% 
+with 
+% 
+\[
+\begin{split}
+  d&\equiv \sI_-\tanh[\sI_-(L-l)] + \sI_+\coth(2\sI_+l),\\
+  e&\equiv \sI_+\csch(2\sI_+l).
+\end{split}
+\]
+% 
+
+Solving for $A_L$ in the second equation, and substituting it into the first one yields
+% 
+\begin{equation*}
+  G\vec{r} = -s\vec{c} + \vec{b}_0\left(\frac{-\vec{b}_1^T\vec{r}}{z\chi}\right),
+\end{equation*}
+% 
+with 
+% 
+\begin{equation*}
+% \label{eqn:lam}
+	\begin{split}
+	\begin{aligned}
+	&G = \begin{pmatrix} d&e\\e&d\end{pmatrix},
+	&&r = \begin{pmatrix} \psi(l)\\ -\psi(-l)\end{pmatrix},
+	&&c = \begin{pmatrix} c_+\\ c_-\end{pmatrix},\\
+	&\vec{b}_0 = \begin{pmatrix} z\\ 1\end{pmatrix},
+	&&\vec{b}_1 = \begin{pmatrix} 1\\ z\end{pmatrix},
+	&&\chi = \frac{\sinh[2\sI_-(L-l)]}{\sI_-}.
+	\end{aligned}
+	\end{split}
+\end{equation*}
+% 
+This yields the matrix problem
+% 
+\begin{equation}
+\label{eqn:reqn1}
+  (G+B)\vec{r} = -s\vec{c},
+\end{equation}
+% 
+where 
+% 
+\[
+  B = \frac{1}{z\chi}\vec{b}_0\vec{b}_1^T = \frac{1}{z\chi}\begin{pmatrix} z&z^2\\1& z\end{pmatrix} =
+  \frac{1}{\chi}\begin{pmatrix} 1&z\\ \bar{z}& 1\end{pmatrix},
+\]
+% 
+since $z\bar{z}=1$.
+
+Recall that the eigenvalue system that we want to solve, from \eqref{eqn:lam}, is
+% 
+\begin{equation*}
+% \label{eqn:lam}
+	\begin{split}
+	\Ep^{-1}\bar{\lA}\kA_0\begin{pmatrix}c_+\\c_-\end{pmatrix}
+   &=
+	\begin{pmatrix} -\psi(l) \\ \psi(-l) \end{pmatrix}
+	 +v_x(l) \begin{pmatrix}c_+\\c_-\end{pmatrix},
+	\end{split}
+\end{equation*}
+%
+or, using compact notation
+% 
+\begin{equation}
+\label{eqn:reqn2}
+ \Ep^{-1}\bar{\lA}\kA_0\vec{c} = \vec{r} + v_x(l)\vec{c}.
+\end{equation}
+% 
+
+Solving for $\vec{r}$ in \eqref{eqn:reqn1}, and substituting into \eqref{eqn:reqn2} yields
+% 
+\begin{equation}
+\label{eqn:reqn3}
+ \frac{\Ep^{-1}\bar{\lA}\kA_0}{s}\vec{c} = (G+B)^{-1}\vec{c} + \frac{v_x(l)}{s}\vec{c}.
+\end{equation}
+% 
+
+Now, 
+% 
+\[
+  \frac{v_x(l)}{s} = -\frac{\Ep}{\DD}\frac{g_-g_+L}{g_--g_+}\frac{\DD}{\Ep(g_+-g_-)} = \frac{g_-g_+L}{(g_+-g_-)^2}.
+\]
+% 
+
+Since 
+% 
+\[
+  l=\frac{g_-}{g_--g_+}L\qquad\rightarrow\qquad\frac{g_+}{g_-} = 1-\frac{L}{l},
+\]
+% 
+we can then calculate
+% 
+\begin{equation}
+\label{eqn:vx}
+  \frac{v_x(l)}{s} = \frac{l^2}{L}\left(1-\frac{L}{l} \right) = \left(1-\frac{L}{l} \right)\frac{l^2}{L^2}L.
+\end{equation}
+% 
+
+Similarly,
+% 
+\[
+  \frac{\Ep^{-1}\bar{\lA}\kA_0}{s} = \frac{\Ep^{-1}\bar{\lA}\kA_0}{\Ep(g_+-g_-)/\DD} = -\frac{\DD}{\Ep^2}\frac{\bar{\lA}\kA_0}{g_-}\frac{l}{L}.
+\]
+% 
+
+Substituting into \eqref{eqn:reqn3}, with $\bar{\lA} = \lA + \Ep^2m^2$, we obtain
+% 
+\begin{equation}
+\label{eqn:ceqn1}
+(G+B)^{-1}\vec{c} + \left(1- \frac{L}{l}\right)\frac{l^2}{L^2}L\vec{c} - m^2\vA\bar{c} = \frac{\vA}{\Ep^2}\lA\bar{c},
+\end{equation}
+% 
+with $\vA = -\frac{\DD}{g_-}\kA_0\left(\frac{l}{L} \right)$.
+
+The eigenpairs $\lA$ and $\bar{c}$ of \eqref{eqn:ceqn1} are given in terms of the spectrum of the two-by-two matrix $(G+B)^{-1}$, 
+% 
+\[
+ (G+B)^{-1}\vec{\nu}_{\pm} = \omega_{\pm}\vec{\nu}_{\pm},
+\]
+% 
+they are given as
+% 
+\begin{equation}
+\label{eqn:lam2}
+	\begin{split}
+	\begin{aligned}
+	  \vec{c} &= \vec{\nu}_+,\qquad\text{and}\qquad \lA_+ = \frac{\Ep^2}{\vA}\left[\omega_+ + \left(1- \frac{L}{l}\right)\frac{l^2}{L^2}L - m^2\vA \right],\\
+	  \vec{c} &= \vec{\nu}_-,\qquad\text{and}\qquad \lA_- = \frac{\Ep^2}{\vA}\left[\omega_- + \left(1- \frac{L}{l}\right)\frac{l^2}{L^2}L - m^2\vA \right].
+	\end{aligned}
+	\end{split}
+\end{equation}
+%
+
+This will yield two eigenpairs for each value of $z$. Thus we only need to find the spectrum of $(G+B)^{-1}$, and this can be done by first calculating the eigenpairs of $G+B$, and then taking the reciprocals of the eigenvalues.
+
+Since the matrix
+% 
+\[
+  G+B = \begin{pmatrix}d&e\\e&d\end{pmatrix} + \frac{1}{\chi}\begin{pmatrix}1&z\\ \bar{z}&1\end{pmatrix}
+\]
+% 
+is a Hermitian matrix, then all the eigenvalues must be real, and it is possible to find an orthonormal basis.
+
+We let $(G+B)\vec{\nu}=\sI\vec{\nu}$, and we have
+% 
+\[
+  \det\begin{pmatrix} d+\frac{1}{\chi}-\sI&e+\frac{z}{\chi}\\ e+\frac{\bar{z}}{\chi}&d+\frac{1}{\chi}-\sI\end{pmatrix}=0.
+\]
+% 
+
+Thus
+% 
+\begin{equation*}
+% \label{eqn:lam2}
+	\begin{split}
+		\left(d+\frac{1}{\chi}-\sI \right)^2 &= \left(e+\frac{z}{\chi} \right)\left(e+\frac{\bar{z}}{\chi} \right),\\
+		&= e^2 + \frac{1}{\chi^2} + \frac{e}{\chi}(z+\bar{z}),
+	\end{split}
+\end{equation*}
+%
+and we have used the fact that $z\bar{z}=1$.
+
+Thus
+% 
+\begin{equation*}
+% \label{eqn:lam2}
+	\begin{split}
+		d+\frac{1}{\chi}-\sI =\pm\left( e^2 + \frac{1}{\chi^2} + \frac{2e}{\chi}\mathrm{Re}(z)\right)^{1/2},
+	\end{split}
+\end{equation*}
+%
+and we can conclude that the eigenvalues of $(G+B)^{-1}$, needed in \eqref{eqn:lam2}, are simply
+% 
+\begin{equation*}
+% \label{eqn:lam3}
+	\begin{split}
+	  \omega_{\pm} = \frac{1}{d+\frac{1}{\chi}\pm\left( e^2 + \frac{1}{\chi^2} + \frac{2e}{\chi}\mathrm{Re}(z)\right)^{1/2}}.
+	\end{split}
+\end{equation*}
+%
+
+Now, in order to calculate the eigenvectors we first notice that
+% 
+\[
+  d+\frac{1}{\chi}-\sI = \pm|f|,\qquad\text{where}\quad f=e+\frac{z}{\chi},\quad\text{and}\quad |f|=(f\bar{f})^{1/2}
+\]
+% 
+is the length of the complex vector $f$.
+
+Thus, for $\omega_+$ we have
+% 
+\[
+  \begin{pmatrix} d+\frac{1}{\chi}-\sI&e+\frac{z}{\chi}\\ e+\frac{\bar{z}}{\chi}&d+\frac{1}{\chi}-\sI\end{pmatrix}\vec{\nu}_+=\begin{pmatrix} |f|&f\\ \bar{f}&|f|\end{pmatrix}\vec{\nu}_+ = \vec{0},\quad\text{thus}\quad \vec{\nu}_+ = \begin{pmatrix}|f|\\ -\bar{f} \end{pmatrix}.
+\]
+% 
+
+Similarly, for $\omega_-$ we have
+% 
+\[
+  \begin{pmatrix} -|f|&f\\ \bar{f}&-|f|\end{pmatrix}\vec{\nu}_- = \vec{0},\quad\text{thus}\quad \vec{\nu}_ -= \begin{pmatrix}|f|\\ \bar{f} \end{pmatrix}.
+\]
+% 
+
+Notice that in a generalized dot product defined as
+% 
+\[
+  \vec{a}\cdot \vec{b} = \vec{a}^\dagger\vec{b},\quad\text{where}\quad\vec{a}=\begin{pmatrix}a_1\\ \vdots \\ a_N\end{pmatrix},\quad\vec{a}^\dagger=(\bar{a}_1, \cdots, \bar{a}_N),
+\]
+% 
+
+then
+% 
+\[
+  \vec{\nu}_+\cdot \vec{\nu}_- = (|f|,-f)\begin{pmatrix}|f|\\ \bar{f}\end{pmatrix} = 0,
+\]
+% 
+therefore $\vec{\nu}_+,\vec{\nu}_-$ are orthogonal with respect to this inner product.
+
+\begin{lemma}
+  The spectrum of $(G+B)^{-1}\vec{\nu}_{\pm} = \omega_{\pm}\vec{\nu}_{\pm}$ is as follows:
+% 
+\begin{equation}
+\label{eqn:spect}
+	\begin{split}
+	\begin{aligned}
+	  \omega_+&=\frac{1}{d+\frac{1}{\chi}+|f|} &&\qquad \vec{\nu}_+=\begin{pmatrix}|f|\\ -\bar{f}\end{pmatrix},\\
+	  \omega_-&=\frac{1}{d+\frac{1}{\chi}-|f|} &&\qquad \vec{\nu}_-=\begin{pmatrix}|f|\\ \bar{f}\end{pmatrix},
+	\end{aligned}
+	\end{split}
+\end{equation}
+%
+where
+% 
+\begin{equation*}
+	\begin{split}
+	\begin{aligned}
+	  f&=e+\frac{z}{\chi}, &&e = \sI_+\csch(2\sI_+l),\\
+	  \chi&=\frac{\sinh[2\sI_-(L-l)]}{\sI_-}, &&d = \sI_-\tanh[\sI_-(L-l)]+\sI_+\coth(2\sI_+l).
+	\end{aligned}
+	\end{split}
+\end{equation*}
+%
+\end{lemma}
+
+Then, we have that
+% 
+\[
+  |f| = \left(e^2 + \frac{1}{\chi^2} + \frac{2e}{\chi}\mathrm{Re}(z) \right)^{1/2},\qquad z=e^{i\tH}.
+\]
+% 
+
+\begin{lemma}
+  Consider a steady-state solution of $K-$mesas on an interval of length $2KL$ with Neumann boundary conditions. Then the linearized problem admits $2K$ eigenvalues.
+
+The eigenvalues are given by
+% 
+\begin{equation*}
+	\lA_{\pm_j} = \frac{\Ep^2}{\vA}\left[\omega_{\pm_j} + \left(1-\frac{L}{l}\right)\frac{l^2}{L^2}L-m^2\vA \right]\qquad\text{for }j=1,\cdots,K-1,
+\end{equation*}
+% 
+where
+% 
+\begin{equation*}
+  \omega_{\pm_j}=\frac{1}{d+\frac{1}{\chi}\pm \left(e^2 + \frac{1}{\chi^2} + \frac{2e}{\chi}\cos(\pi j/K) \right)^{1/2}},\qquad j=1,\cdots,K-1.
+\end{equation*}
+% 
+
+Finally, the two remaining eigenvalues are
+% 
+\begin{equation*}
+	\begin{split}
+	\begin{aligned}
+	  \lA_{\pm K} &= \frac{\Ep^2}{\vA}\left[\omega_{\pm K}+\left(1-\frac{L}{l}\right)\frac{l^2}{L^2}L - m^2\vA \right],
+	\end{aligned}
+	\end{split}
+\end{equation*}
+%
+with 
+% 
+\[
+  \omega_{+K}=\frac{1}{d+e},\qquad\omega_{-K}=\frac{1}{d-e}.
+\]
+% 
+\end{lemma}
+
+These are the eigenvalues that correspond to a $K-$mesa pattern generated by gluing together $K$ mesas.
+
+The various quantities are:
+% 
+\begin{equation*}
+	\begin{split}
+	\begin{aligned}
+	  d &= \sI_-\tanh[\sI_-(L-l)]+\sI_+\coth(2\sI_+l),\\
+	  e &= \sI_+\csch(2\sI_+l),\\
+	  \chi &= \sI_-^{-1}\sinh[2\sI_-(L-l)],\\
+	  \sI_{\pm}^2 &= m^2  - \frac{\Ep}{\DD}\left(g_v^{\pm} - \frac{f_v^{\pm}}{f_u^{\pm}}g_u^{\pm} \right) + \frac{\Ep\tau\lA}{\DD}.
+	\end{aligned}
+	\end{split}
+\end{equation*}
+%
+
+Now we calculate with a little algebra
+% 
+\begin{equation*}
+	\begin{split}
+	\begin{aligned}
+	  d + e&= \sI_-\tanh[\sI_-(L-l)]+\sI_+\coth(\sI_+l),\\
+	  d - e&= \sI_-\tanh[\sI_-(L-l)]+\sI_+\tanh(\sI_+l),\\
+	  d + \frac{1}{\chi} &= \sI_-(\tanh[\sI_-(L-l)]+\sI_+\csch[2\sI_-(L-l)]) + \sI_+\coth(2\sI_+l).
+	\end{aligned}
+	\end{split}
+\end{equation*}
+%
+
+In addition,
+% 
+\begin{equation*}
+	\begin{split}
+	\begin{aligned}
+	  \left(e^2 + \frac{1}{\chi^2} + \frac{2e}{\chi}\cos(2\pi j/K) \right)^{1/2} = \left[\left(e + \frac{1}{\chi}\right)^2 - \frac{4e}{\chi}\sin^2\left(\frac{\pi j}{2K}\right) \right]^{1/2},
+	\end{aligned}
+	\end{split}
+\end{equation*}
+%
+
+and
+% 
+\begin{equation*}
+	\begin{split}
+	\begin{aligned}
+	  e+\frac{1}{\chi} &= \sI_+\csch(2\sI_+l) + \sI_-\csch[2\sI_-(L-l)],\\
+	  \frac{4e}{\chi} &= 4\sI_+\sI_-\csch(2\sI_+l)\csch[2\sI_-(L-l)].
+	\end{aligned}
+	\end{split}
+\end{equation*}
+%
+
+Thus
+% 
+\begin{equation*}
+	\begin{split}
+	\begin{aligned}
+	  \omega_{\pm_j} = \frac{1}{d+\frac{1}{\chi}\pm \left[\left(e + \frac{1}{\chi}\right)^2 - \frac{4e}{\chi}\sin^2\left(\frac{\pi j}{2K}\right) \right]^{1/2}},\qquad j=1,\cdots,K-1.
+	\end{aligned}
+	\end{split}
+\end{equation*}
+%
+
+Finally,
+% 
+\begin{equation*}
+	\begin{split}
+	\begin{aligned}
+	  \vA = -\frac{\DD}{g_-}\kA_0\left(\frac{l}{L} \right),\qquad \kA_0\equiv\dfrac{\int_{-\infty}^{\infty}(U_0')^2 dy}{\int_{u_-}^{u_+}f_vdu},\qquad \frac{l}{L} = \frac{g_-}{g_--g_+} 
+	\end{aligned}
+	\end{split}
+\end{equation*}
+%

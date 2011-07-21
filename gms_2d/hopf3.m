@@ -1,0 +1,91 @@
+function hopf3
+% estimation of the eigenvalues, use with hopf1.m and 
+% gms_num_solver.m and hopf2
+
+  Kappa = [0.15:0.05:3];
+  for K = 1:length(Kappa)
+
+    Kap = Kappa(K);
+    D = 50; % diffusion coefficient ratio, in the v equation
+    Ep = 0.01;
+    DD = Ep*D;
+    G_gms = inline('- v + u.^2','u','v');
+    Dfv = inline('- u.^2./(v.^2.*(1+Kap*u.^2))','u','v','Kap');
+    Beta = 1.49882;
+    B0 = 0.211376;
+    Wplus = 3.295209;
+    Uplus = sqrt(B0/Kap)*Wplus;
+    Uminus = 0;
+    V0 = sqrt(B0/Kap);
+    K0 = Beta*V0^2/(quad(Dfv,Uminus,Uplus,[],[],V0,Kap));
+    Delta1 = 0.01; Delta2 = 0.01;
+    Tau1 = 1000; Tau2 = 1000; 
+    G_minus = G_gms(Uminus,V0); G_plus = G_gms(Uplus,V0);
+    Ll_ratio = (G_minus - G_plus)/G_minus;
+
+    L_crit = critical_L(Kap,Ll_ratio);
+%     L_crit_p(K) = L_crit(1)
+    L_crit_m(K) = L_crit(2);
+  end
+
+%   plot(Kappa, L_crit_p,'r'), hold on
+  plot(Kappa, L_crit_m)
+  
+%   Title = ['../gms with auto stuff/data/hopf_critical_']
+%   save([Title,'_L_critical_plus','.txt'],'L_crit_p','-ASCII')
+%   save([Title,'_L_critical_minus','.txt'],'L_crit_m','-ASCII')
+%   save([Title,'_Kappa_full_p','.txt'],'Kappa','-ASCII')
+%   save([Title,'_Kappa_full_m','.txt'],'Kappa','-ASCII')
+
+  function lcritical = critical_L(Kap,LL_Ll)
+% solve equations 18a and 18b in the HB notes (find the hopf 
+% point in the GMS system
+
+    Va = -DD*K0/(G_gms(Uminus, V0)*LL_Ll);
+    L = 0.6:0.01:18;
+    for I = 1:length(L)
+      LL = L(I);    
+      Ll = LL/LL_Ll;
+%       Delta1(I+1) = fzero(@Plus_1, Delta1(I),[],LL,Ll);
+%       Tau1(I+1) = Minus_1(Delta1(I+1),LL,Ll);
+      Delta2(I+1) = fzero(@Plus_2, Delta2(I),[],LL,Ll);
+      Tau2(I+1) = Minus_2(Delta2(I+1),LL,Ll);  
+    end
+
+    %% save variables to disk
+%     Tau_p = -Tau1(2:end)'*Va*DD/Ep^3;
+    Tau_m = -Tau2(2:end)'*Va*DD/Ep^3;
+%     Lam_p = Ep*Delta1(2:end)'*DD./Tau_p;
+    Lam_m = Ep*Delta2(2:end)'*DD./Tau_m;
+    El = L';
+%     coord_p = find(abs(Lam_p)==min(abs(Lam_p)))
+    coord_m = find(abs(Lam_m)==min(abs(Lam_m)))
+%     lcritical(1) = L(coord_p);
+    lcritical(2) = L(coord_m);
+    Lam_m(coord_m)
+  end
+  
+  
+  function y = Plus_1(delta,LL,Ll)
+    a = sqrt(i*delta);
+    y = (1-LL/Ll)*Ll^2/LL + ...
+      real((a*(tanh(a*(LL-Ll)) + tanh(a*Ll)))^(-1));
+  end
+
+  function tau = Minus_1(delta,LL,Ll)
+    a = sqrt(i*delta);
+    tau = - delta/imag((a*(tanh(a*LL-Ll)+tanh(a*Ll)))^(-1));
+  end
+   
+  function y = Plus_2(delta,LL,Ll)
+    a = sqrt(i*delta);
+    y = (1-LL/Ll)*Ll^2/LL + ...
+      real((a*(tanh(a*(LL-Ll)) + coth(a*Ll)))^(-1));
+  end
+
+  function tau = Minus_2(delta,LL,Ll)
+    a = sqrt(i*delta);
+    tau = - delta/imag((a*(tanh(a*LL-Ll)+coth(a*Ll)))^(-1));
+  end
+   
+end

@@ -1,0 +1,66 @@
+function mesa_eigenvals
+%% consider the case M = 0, Tau = 0, for only one mesa
+
+  KK = 2
+  for I=1:length(KK)
+    M = 0;
+    Ep = 0.02;
+    D = 10;
+    Tau = 0;
+    DD = D*Ep;
+    Kap = KK(I);
+    Beta = 1.49882;
+    B0 = 0.211376;
+    Wplus = 3.295209;
+    Uplus = sqrt(B0/Kap)*Wplus;
+    Uminus = 0;
+    V0 = sqrt(B0/Kap)
+    LL = 0.5;
+    Lambda = -0.1;
+
+    F_gms = inline('-u + u.^2./(v.*(1+Kap*u.^2))','u','v','Kap');
+    G_gms = inline('- v + u.^2','u','v');
+    Dfu = inline('- 1 + 2*u./(v.*(1+Kap*u.^2).^2)','u','v','Kap');
+    Dfv = inline('- u.^2./(v.^2.*(1+Kap*u.^2))','u','v','Kap');
+    Dgu = inline('2*u','u');
+    Dgv = inline('-1','v');
+
+    [X,Fval,Flag] = fsolve(@f_minimizer_fsolve,[0.1,1],...
+      optimset('TolFun',1e-9))
+    Uplus = X(2);
+    V0 = X(1);
+    Wplus = Uplus/V0;
+    Ll = G_gms(Uminus, V0)*LL/(G_gms(Uminus, V0) - G_gms(Uplus, V0));
+    K0 = Beta*V0^2/(Ep*quad(Dfv,Uminus,Uplus,[],[],V0,Kap));
+
+
+    Kap_p = - (Dgv(V0)-Dfv(Uplus,V0,Kap)/Dfu(Uplus,V0,Kap)*Dgu(Uplus));
+    Kap_m = - (Dgv(V0)-Dfv(Uminus,V0,Kap)/Dfu(Uminus,V0,Kap)*Dgu(Uminus));
+    Sig_p = sqrt(M^2+Ep/DD*(Kap_p + Tau*Lambda));
+    Sig_m = sqrt(M^2+Ep/DD*(Kap_m + Tau*Lambda));
+%     Dd = Sig_m*tanh(Sig_m*(LL-Ll)) + Sig_p*coth(2*Sig_p*Ll);
+%     Ee = Sig_p*csch(2*Sig_p*Ll);
+    % Chi = sinh(2*Sig_m*(LL-Ll))/Sig_m;
+    Va = -DD/G_gms(Uminus, V0)*K0*(Ll/LL);
+%     Om_p = 1/(Dd-Ee);
+%     Om_m = 1/(Dd+Ee);
+    Om_p = (Sig_m*tanh(Sig_m*(LL-Ll)) + Sig_p*tanh(Ll*Sig_p))^(-1);
+    Om_m = (Sig_m*tanh(Sig_m*(LL-Ll)) + Sig_p*coth(Ll*Sig_p))^(-1);
+    Lam_p(I) = Ep^2/Va*(Om_p + (1-LL/Ll)*Ll^2/LL - M^2*Va);
+    Lam_m(I) = Ep^2/Va*(Om_m + (1-LL/Ll)*Ll^2/LL - M^2*Va);
+  end
+  figure(1)
+  plot(KK,Lam_p,'r')
+  figure(2)
+  plot(KK,Lam_m)
+  Lam_m*DD/(Ep^2*2*Ll)
+  Lam_p*2*Ll/Ep
+
+  function z = f_minimizer_fsolve(x)
+    v0 = x(1); 
+    uplus = x(2);
+    f_of_uv = inline('- u + u.^2./(v.*(1 + k*u.^2))','u','v','k');
+    z(1) = quad(f_of_uv,0,uplus,[],[],v0,Kap);
+    z(2) = f_of_uv(uplus,v0,Kap);
+  end
+end
