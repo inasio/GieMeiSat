@@ -1041,7 +1041,7 @@ Using separation of variables, $w(x,t)\equiv(u,v)^T=\ww(t)\WW(x)$, the spatial c
 \end{split}
 \end{equation}
 
-For the 1D domain $[0,1]$ we have that the eigenvalue is $k=2n\pi/L$, and the corresponding eigenvector is $W \propto \cos(n\pi x)$. Notice that the eigenvalue is not $k=n\pi/L$, as this would allow half-mesa solutions.
+For the 1D domain $[0,L]$ we have that the eigenvalue is $k=2n\pi/L$, and the corresponding eigenvector is $W \propto \cos(n\pi x)$. Notice that the eigenvalue is not $k=n\pi/L$, as this would allow half-mesa solutions.
 
 Likewise, the purely temporal solution of the linearized system is $\ww\propto e^{\lA t}$. The full solution to the linearized problem is then given by
 % 
@@ -1086,9 +1086,9 @@ Nontrivial $\WW_k$ solutions will exist for values of $\lA$ determined by the ro
 \end{split}
 \end{equation}
 
-We are looking for solutions that are stable in the absence of diffusion, therefore if $k=0$ we require $a_u+b_V/\tau<0$ $(\textrm{tr}(A)<0)$ and $a_ub_v/\tau - a_vb_u/\tau>0$ $(\det(A)>0)$.
+We are looking for solutions that are stable in the absence of diffusion, therefore if $k=0$ we require $a_u+b_v/\tau<0$ $(\textrm{tr}(A)<0)$ and $a_ub_v/\tau - a_vb_u/\tau>0$ $(\det(A)>0)$.
 
-The particular solutions we are interested lose their stability when spatial effects are taken into account ($k\neq 1$). 
+The particular solutions we are interested in become unstable when spatial effects are taken into account ($k\neq 0$). 
 
 Non-homogeneous solutions will appear when the real part of $\lA(k^2)$ becomes positive. A necessary condition for this to happen is $h(k^2)<0$, hence we require the additional condition that $\Ep^2b_v/\tau + a_uD/\tau>0$.
 

@@ -1,21 +1,72 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem{gierer_theory_1972}
-{\sc A.~Gierer and H.~Meinhardt}, {\em A theory of biological pattern
-  formation}, Biological Cybernetics, 12 (1972), pp.~30--39.
+\bibitem[Doedel et~al.()Doedel, Champneys, Fairgrieve, Kuznetsov, Oldeman,
+  Paffenroth, Sandstede, Wang, and Zhang]{doedel_auto-07p}
+E.~Doedel, A.~Champneys, T.~Fairgrieve, Y.~Kuznetsov, B.~Oldeman,
+  R.~Paffenroth, B.~Sandstede, X.~Wang, and C.~Zhang.
+\newblock {AUTO-07P:} continuation and bifurcation software for ordinary
+  differential equations., 2007.
+\newblock \emph{{URL} http://indy. cs. concordia. ca/auto}.
 
-\bibitem{kolokolnikov_stability_2005}
-{\sc T.~Kolokolnikov, M.~J. Ward, and J.~Wei}, {\em The stability of a stripe
-  for the gierer-meinhardt model and the effect of saturation}, SIAM J. Appl.
-  Dyn. Sys, 5, pp.~313--363.
+\bibitem[Gierer and Meinhardt(1972)]{gierer_theory_1972}
+A.~Gierer and H.~Meinhardt.
+\newblock A theory of biological pattern formation.
+\newblock \emph{Biological Cybernetics}, 12\penalty0 (1):\penalty0 30--39,
+  1972.
 
-\bibitem{maxwell1994}
-{\sc T.~O. Maxwell}, {\em Periodic and connecting orbits of Hamiltonian
-  systems}, University of {Wisconsin–Madison}, 1994.
+\bibitem[Kolokolnikov et~al.()Kolokolnikov, Ward, and
+  Wei]{kolokolnikov_stability_2005}
+T.~Kolokolnikov, M.~J. Ward, and J.~Wei.
+\newblock The stability of a stripe for the gierer-meinhardt model and the
+  effect of saturation.
+\newblock \emph{SIAM J. Appl. Dyn. Sys}, 5:\penalty0 313--363.
 
-\bibitem{ren_spectra_2003}
-{\sc X.~Ren and J.~Wei}, {\em On the spectra of three-dimensional lamellar
-  solutions of the diblock copolymer problem}, {SIAM} Journal on Mathematical
-  Analysis, 35 (2003), p.~1.
+\bibitem[Kolokolnikov et~al.(2007)Kolokolnikov, Ward, and
+  Wei]{kolokolnikov_self_2007}
+T.~Kolokolnikov, M.~J. Ward, and J.~Wei.
+\newblock Self-replication of mesa patterns in reaction{\textendash}diffusion
+  systems.
+\newblock \emph{Physica D: Nonlinear Phenomena}, 236:\penalty0 104--122, 2007.
+
+\bibitem[Kolokolnikov et~al.(2009)Kolokolnikov, Ward, and
+  Wei]{kolokolnikov_spot_2009}
+T.~Kolokolnikov, M.~J. Ward, and J.~Wei.
+\newblock Spot {Self-Replication} and dynamics for the {Schnakenberg} model in
+  a {Two-Dimensional} domain.
+\newblock \emph{Journal of Nonlinear Science}, 19\penalty0 (1):\penalty0 1--56,
+  2009.
+
+\bibitem[Maxwell(1994)]{maxwell1994}
+T.~O. Maxwell.
+\newblock \emph{Periodic and connecting orbits of Hamiltonian systems}.
+\newblock University of {Wisconsin–Madison}, 1994.
+
+\bibitem[Murray(2003)]{murray_mathematical_2003-2}
+J.~D. Murray.
+\newblock \emph{Mathematical biology. Vol. 2: Spatial models and biomedical
+  applications.}
+\newblock Interdisciplinary Applied Mathematics, 2003.
+
+\bibitem[Ren and Wei(2003)]{ren_spectra_2003}
+X.~Ren and J.~Wei.
+\newblock On the spectra of three-dimensional lamellar solutions of the diblock
+  copolymer problem.
+\newblock \emph{{SIAM} Journal on Mathematical Analysis}, 35:\penalty0 1, 2003.
+
+\bibitem[Schnakenberg(1979)]{schnakenberg_simple_1979}
+J.~Schnakenberg.
+\newblock Simple chemical reaction systems with limit cycle behaviour.
+\newblock \emph{Journal of Theoretical Biology}, 81\penalty0 (3):\penalty0
+  389--400, 1979.
+
+\bibitem[Turing(1952)]{turing_chemical_1952}
+A.~M. Turing.
+\newblock The chemical theory of morphogenesis.
+\newblock \emph{Phil. Trans. Roy. Soc}, 237:\penalty0 32, 1952.
 
 \end{thebibliography}

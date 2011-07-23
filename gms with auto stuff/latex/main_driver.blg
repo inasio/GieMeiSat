@@ -1,0 +1,63 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: main_driver.aux
+A level-1 auxiliary file: abstract.aux
+A level-1 auxiliary file: preface.aux
+A level-1 auxiliary file: intro.aux
+A level-1 auxiliary file: GMS_old.aux
+A level-1 auxiliary file: mesa_construction.aux
+A level-1 auxiliary file: K-mesa_stability.aux
+A level-1 auxiliary file: one-mesa_stability.aux
+A level-1 auxiliary file: hopf.aux
+The style file: abbrvnat.bst
+Database file #1: growing-domain.bib
+I was expecting a `,' or a `}'---line 275 of file growing-domain.bib
+ :  
+ :  pages = {1-32}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--empty year in doedel_auto-07p
+Warning--empty year in doedel_auto-07p
+Warning--empty year in kolokolnikov_stability_2005
+Warning--empty year in kolokolnikov_stability_2005
+You've used 10 entries,
+            2773 wiz_defined-function locations,
+            658 strings with 6235 characters,
+and the built_in function-call counts, 4310 in all, are:
+= -- 357
+> -- 256
+< -- 6
++ -- 88
+- -- 78
+* -- 349
+:= -- 687
+add.period$ -- 30
+call.type$ -- 10
+change.case$ -- 54
+chr.to.int$ -- 10
+cite$ -- 24
+duplicate$ -- 203
+empty$ -- 359
+format.name$ -- 92
+if$ -- 887
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 12
+newline$ -- 58
+num.names$ -- 40
+pop$ -- 118
+preamble$ -- 1
+purify$ -- 46
+quote$ -- 0
+skip$ -- 141
+stack$ -- 0
+substring$ -- 119
+swap$ -- 10
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 100
+warning$ -- 4
+while$ -- 37
+width$ -- 0
+write$ -- 132
+(There was 1 error message)

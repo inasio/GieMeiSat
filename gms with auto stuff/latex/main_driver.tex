@@ -37,7 +37,7 @@
 % 			urlcolor=black}
 \usepackage[bookmarks,bookmarksnumbered,%
     citebordercolor={0.8 0.8 0.8},filebordercolor={0.8 0.8 0.8},%
-    linkbordercolor={0.8 0.8 0.8},pagebordercolor={0.8 0.8 0.8},%
+    linkbordercolor={0.8 0.8 0.8},%
     urlbordercolor={0.8 0.8 0.8},%
     pagebackref,linktocpage%
     ]{hyperref}
@@ -95,7 +95,7 @@
 \tableofcontents
 \cleardoublepage	% required by tocloft package
 
-% \input{glossary}	% always input, since other macros may rely on it
+\input{glossary}	% always input, since other macros may rely on it
 
 \textspacing		% begin one-half or double spacing
 
