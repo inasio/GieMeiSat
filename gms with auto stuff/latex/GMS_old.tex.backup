@@ -1,22 +1,302 @@
+\chapter{Domain growth on the GMS system}
+\label{ch:one}
+
 \section{Case Study: the GMS model}
 
-The Gierer-Meinhardt system \cite{gierer_theory_1972}, with saturation, is given by the following pair of nonlinear pdes; a system in a family sometimes referred to as reaction-diffusion equations:
+The dimensionless Gierer-Meinhardt system \cite{gierer_theory_1972}, with saturation, is given by the following pair of nonlinear pdes; a system in a family sometimes referred to as reaction-diffusion equations:
 % 
 \begin{equation}
 \label{eqn:o-gms1}
 \begin{split}
 \begin{aligned}
-	u_t &= D_u\De u + a(u,v) = D_u\De u - u +\frac{u^2}{v(1+ku^2)} \\
-	\tau v_t &= D_v\De v + b(u,v) = D_v\De v - v + u^2,
+	u_t &= \Ep^2\De u + a(u,v) = \Ep^2\De u - u +\frac{u^2}{v(1+ku^2)} \\
+	\tau v_t &= D\De v + b(u,v) = D\De v - v + u^2,
 \end{aligned}
 \end{split}
 \end{equation}
 % 
-with $D_u = \Ep^2, D_v = D/\Ep$, plus homogeneous Neumann boundary conditions on $x\in[0,1]$. We consider the limit where $\Ep\ll 1$, and regard all the other constants as being $O(1)$. 
+plus homogeneous Neumann boundary conditions on $x\in[-1,1]$. We consider the limit where $\Ep\ll 1$, and we will study various parameter regimes.
+
+\subsection{Turing stability analysis}
+
+A homogeneous stationary solution to the GMS model \eqref{eqn:o-gms1} ($u_t = v_t = \De u = \De v = 0$) exists when
+% 
+\begin{equation*}
+% \label{eqn:homog_soln}
+\begin{split}
+\begin{aligned}
+	\frac{u^2}{v(1+ku^2)} = u, \\
+    u^2 = v,
+\end{aligned}
+\end{split}
+\end{equation*}
+% 
+which involves solving the cubic equation $u+ku^3-1 = 0$. We will consider positive values of $k$ only, hence the curve $f(u) = u+ku^3-1$ increases monotonically, guaranteeing that there will only be one homogeneous solution. For example, for a value of $k = 2.5$, which was the used for most numerical calculations, the stationary homogeneous solution is $u=0.5603,v=u^2$.
+
+According to Turing theory (see \cite{turing_chemical_1952}, \cite{murray_mathematical_2003-2}), when the ratio of the diffusion coefficients is large $(D/\Ep^2\gg 1)$, the homogeneous solution becomes unstable and a stable heterogeneous solution develops. By linearizing around the homogeneous solution it is possible to determine the domain length $L$ at which the new solution appears, as well as general conditions on the existence of heterogeneous solutions. 
+
+The linearized problem around the equilibrium solutions previously computed is
+% 
+\begin{equation}
+\label{eqn:linear1}
+\begin{split}
+\begin{aligned}
+	u_t &= \Ep^2\De u + a_u(u_{eq},v_{eq})u + a_v(u_{eq},v_{eq})v \\
+	\tau v_t &= D\De v + b_u(u_{eq},v_{eq})u + b_v(u_{eq},v_{eq})v.
+\end{aligned}
+\end{split}
+\end{equation}
+%
+Using separation of variables, $w(x,t)\equiv(u,v)^T=\ww(t)\WW(x)$, the spatial component leads to the eigenvalue problem
+% 
+\begin{equation*}
+% \label{eqn:spatial1}
+\begin{split}
+\begin{aligned}
+	\De \WW+k^2\WW=0,\qquad (n\cdot\nabla)\WW=0.
+\end{aligned}
+\end{split}
+\end{equation*}
+
+For the 1-D domain $[0,L]$ we have that the eigenvalues are $k=2n\pi/L$, and the corresponding eigenvectors are $W \propto \cos(k x)$, for $n\in\NN$. Notice that the eigenvalue is not $k=n\pi/L$, as this would allow half-mesa solutions.
+
+Likewise, the purely temporal solution of the linearized system is $\ww\propto e^{\lA t}$. The full solution to the linearized problem is then given by
+% 
+\begin{equation*}
+% \label{eqn:full_soln_lin}
+\begin{split}
+\begin{aligned}
+	w(x,t) = \sum_kc_ke^{\lA t}\WW_k(x) = \sum_kc_ke^{\lA t}\cos(kx),
+\end{aligned}
+\end{split}
+\end{equation*}
+% 
+with the constants $c_k$ defined by the initial condition. Upon substituting into \eqref{eqn:linear1}, we get the system
+% 
+\begin{equation*}
+% \label{eqn:matrix_lin}
+% \begin{split}
+\begin{aligned}
+	\lA \WW_k &= -\DD k^2\WW_k + \Aa\WW_k,\\ \qquad \textrm{with }
+  \DD =\begin{bmatrix}
+		\Ep^2 & 0 \\
+		0 & D/\tau
+  \end{bmatrix} \textrm{, and }
+  &\Aa =
+	\begin{bmatrix}
+		a_u(u_{eq},v_{eq})& a_v(u_{eq},v_{eq}) \\
+		b_u(u_{eq},v_{eq})/\tau& b_v(u_{eq},v_{eq})/\tau
+  \end{bmatrix}.
+\end{aligned}
+% \end{split}
+\end{equation*}
+
+Nontrivial $\WW_k$ solutions will exist for values of $\lA$ determined by the roots of the characteristic polynomial of the matrix $\Aa - \DD k^2$. Since the equilibrium solutions are constant, we have a $2\times 2$ matrix, and thus we have that the characteristic polynomial for $\lA$ is
+% 
+\begin{equation*}
+% \label{eqn:charac_poly}
+\begin{split}
+\begin{aligned}
+  &\lA^2 + \lA(k^2(D/\tau + \Ep^2) - a_u - b_v/\tau) + h(k^2) = 0 \\
+  &h(k^2) = k^4\Ep^2D/\tau - k^2(\Ep^2b_v/\tau + a_uD/\tau) + a_ub_v/\tau - a_vb_u/\tau.
+\end{aligned}
+\end{split}
+\end{equation*}
+
+We are looking for solutions that are stable in the absence of diffusion, therefore if $k=0$ we require $a_u+b_v/\tau<0$ $(\textrm{tr}(A)<0)$ and $a_ub_v/\tau - a_vb_u/\tau>0$ $(\det(A)>0)$.
+
+The particular solutions we are interested in become unstable when spatial effects are taken into account ($k\neq 0$). 
+
+Heterogeneous solutions will appear when the real part of $\lA(k^2)$ becomes positive. A necessary condition for this to happen is $h(k^2)<0$, hence we require the additional condition that $\Ep^2b_v/\tau + a_uD/\tau>0$.
+
+To satisfy a sufficient condition we must also require that $h(k^2)<0$ for some $k^2$. By differentiation we find that the critical value is $k^2_{min} = \frac{\Ep^2b_v + a_uD}{2\Ep^2D}$, and
+% 
+$$
+h(k^2_{min}) = \frac{\Ep^4b_v^2 + a_u^2D^2}{4\Ep^2D\tau} - \frac{\left(\Ep^2b_v + a_uD\right)^2}{2\Ep^2D\tau} + \det(A)
+$$
+
+The values of $L$ at which heterogeneous solutions appear, for various eigenmodes $n$, are shown in Table \ref{tab:L_turing}.
+% 
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{cc}
+\toprule
+\large{Eigenmode $n$} & \large{$L$}\\
+\midrule
+1 & 0.3729 \\
+2 & 0.7458 \\
+4 & 1.4917 \\
+8 & 2.9833 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\caption{Some domain length values at which non-homogeneous solutions appear, according to Turing theory. The values were computed using the constants $L=2.5,\tau=1,\Ep=0.02,D=1$. The eigenmodes correspond to one, two, four, and eight peaks. These values can be seen overlapped in the full bifurcation diagram of Figure \ref{fig:one_sol}.}
+\label{tab:L_turing}
+\end{table}
+% 
+
+\subsection{\label{section:construction}Construction of a single mesa}
+
+Solving the system numerically reveals that the solutions past the Turing thresholds have a mesa profile (see \autoref{fig:mesa_profiles}). A single mesa is essentially a saturated pulse solution with a symmetric flat profile in the centre of the domain, separated from a quasi-zero solution by sharp interfaces located at $x=\pm l$. Analogously to pulse systems such as the Schnakenberg system (cf. \cite{schnakenberg_simple_1979}), increasing the domain length splits the solution into images of the single mesa.
+% 
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=4in]{profiles_basic_mesa_}
+\caption{Mesa profiles for various values of $\kappa$, obtained by numerically solving \eqref{eqn:o-gms1}. The other parameters used are $D=10$ and $L=1$. The system was integrated using an implicit explicit scheme on a 500 point grid.}
+\label{fig:mesa_profiles}
+\end{center}
+\end{figure}
+% 
+Since the solutions are no longer pulses, it is no longer possible to represent the activation term as a delta function, and generate an approximate solution via a related Greens problem (this approach applied to the Schnakenberg system can be seen in \cite{kolokolnikov_spot_2009}). The mesa solutions are no longer homoclinic solutions, instead the system can be thought of as two back-to-back heteroclinic branches. This characteristic can be exploited to obtain a first asymptotic approximation of the system. This was approach done originally in \cite{kolokolnikov_self_2007}, and is added here for the benefit of the reader.
+
+We start by looking for an asymptotic solution near the interface $x=l$ to the steady state problem $u_t = v_t = 0$:
+% 
+$$
+u=U_0(y) + \Ep U_1(y)+\ldots, \qquad v=V_0(y) + \Ep V_1(y)+\ldots, \qquad y=\frac{x-l}{\Ep}.
+$$
+
+To $O(1)$, since $D_u = O(\Ep^2)$, the system is
+% 
+\begin{equation*}
+\label{eqn:order1}
+\begin{split}
+\begin{aligned}
+	U_0'' &= U_0 - \frac{U_0^2}{V_0(1+kU_0^2)}\\
+	V_0'' &= 0.
+\end{aligned}
+\end{split}
+\end{equation*}
+
+From the boundary conditions we have that $V_0$ is a constant. To determine its value, we use the Maxwell line condition \cite{maxwell1994}, which states that in order to have a heteroclinic connection between $x=0$ and $x=L$, there has to be a value $v_c$, such that the area under the roots of $a(u,v_c) = -u +  \frac{u^2}{v_c(1+ku^2)}$ is zero. The three roots of $a(u,v)$ occur at $u=0$ and at $u=u_{\pm}(v) = \frac{1\pm\sqrt{1-4kv^2}}{2kv}$, with $0<u_-(v)-<u_+(v)$. The non-zero roots can be expressed as $v=h(u)=\frac{u}{1+ku^2}$ for $0<v<v_m$ , with $v=v_m$ the value at which both roots coalesce. Hence, the solution to the $O(1)$ equation is $V_0=v_c$, with $v_c$ the value that satisfies the Maxwell line condition
+% 
+\begin{equation}
+\label{eqn:maxwell}
+\int_0^{u_c}a(u,v_c)=0,\qquad u_c\equiv u_+(v_c),
+\end{equation}
+% 
+and $U_0$ the unique heteroclinic connection satisfying $U_0(-\infty)=u_+(v_c)=u_c$ and $U_0(\infty)=0$.
+
+To $O(\Ep)$ we have the system
+% 
+\begin{equation*}
+\label{eqn:order_eps}
+\begin{split}
+\begin{aligned}
+	&\mathcal{L}(U_1) = U_1'' + a_u(U_0,V_0)U_1 = -a_v(U_0,V_0)V_1\\
+	&V_1'' = 0.
+\end{aligned}
+\end{split}
+\end{equation*}
+
+The solution to the second equation is $V_1 = V_{11}y + V_{12}$. Since $\mathcal{L}(U_0')=0$, we can derive a solvability condition to determine $V_{12}$ in terms of $V_{11}$,
+% 
+\begin{equation*}
+  \label{eqn:solvability}
+  V_{12}\int_{-\infty}^{\infty}a_v(U_0,v_c)U_0'dy = V_{11}\int_{-\infty}^{\infty}a_v(U_0,v_c)yU_0'dy.
+\end{equation*}
+
+Furthermore, matching to the outer solution yields that $V_{11} = v'(l^{\pm})$.
+
+There are two outer solutions, to the left and right of the internal layer at $x=l$, that when matched will determine the value for $v'(l^{\pm})$. The problem to the left of the layer, $0<x<l$, is
+% 
+\begin{equation}
+  \label{eqn:left}
+  D_v v'' = b(u,h(u)) = g(u),\qquad v(l)=v_c,\qquad v'(0)=0,\qquad u = u_+(v),
+\end{equation}
+% 
+whereas the outer problem on the right side of the layer, $l<x<L$, is defined as
+% 
+\begin{equation}
+  \label{eqn:right}
+  D_v v'' = b(0,v),\qquad v(l)=v_c,\qquad v'(L)=0.
+\end{equation}
+
+Since $V_{11}$ is a constant, the matching condition is that $v'(l^-) = v'(l^+)$
+
+Multiplying \eqref{eqn:left} by $v'=h'(u)u'$ and integrating yields the following equations for $u_x$ and $v_x$,
+% 
+\begin{equation*}
+%   \label{eqn:left}
+  \frac{dv}{dx} = -\sqrt{\frac{2F(u;u_0)}{D}},\qquad \frac{du}{dx} = -\sqrt{\frac{2F(u;u_0)}{Dh'(u)}},
+\end{equation*}
+% 
+with $F(u;u_0) = \int_{u_0}^u g(s)h'(s)ds$. Upon integrating between $u_0=u(0)$ and $u(l)=u_c$, we obtain the following relationship:
+% 
+\begin{equation}
+  \label{eqn:feo1}
+  -\frac{l}{\sqrt{D}} = \int_{u_0}^{u_c}\frac{h'(u)}{\sqrt{2F(u;u_0)}}du = \frac{\sqrt{2F(u_c;u_0)}}{g(u_c)} + \int_{u_0}^{u_c}\frac{g'(u)}{(g(u))^2}\sqrt{2F(u;u_0)}du.
+\end{equation}
+
+The exact solution on the outer region given in \eqref{eqn:right} can be calculated analytically as 
+% 
+\begin{equation}
+  \label{eqn:outer1}
+  v(x) = v_c\left(\frac{\cosh\left[(L-x)/\sqrt{D}\right]}{\cosh\left[(L-l)/\sqrt{D}\right]}\right),\qquad v'(l^+)=-\frac{v_c}{\sqrt{D}}\tanh\left[(L-l)/\sqrt{D}\right].
+\end{equation}
+
+Finally, since $v'(l^+)=v'(l^-)$, we can solve for $l$ in \eqref{eqn:outer1} and substitute it into \eqref{eqn:feo1} to obtain the critical points at which the domain will split, as a function of the domain length and $D$:
+% 
+\begin{equation}
+  \label{eqn:final1}
+  \frac{L}{\sqrt{D}}=\tanh^{-1}\left(\frac{\sqrt{2F(u_c;u_0)}}{v_c} \right) - \frac{\sqrt{2F(u_c;u_0)}}{g(u_c)} - \int_{u_0}^{u_c}\frac{g'(u)}{(g(u))^2}\sqrt{2F(u;u_0)}du.
+\end{equation}
+% 
+
+\subsection{Bifurcation analysis}
+
+Equation \eqref{eqn:final1} provides an analytical estimate of the domain length at which splitting occurs. We want to study the splitting behaviour as the domain increases both statically (when stationary solutions are recomputed at each domain length value), and dynamically (when the domain length is a dynamic variable). We start by focusing on how solutions change numerically as the domain length increases. The boundary conditions were homogeneous Neumann, and the values of the constants were $k=2.5, \tau=1, D=1$, and $\Ep=0.02$. 
+
+% The system given in \eqref{eqn:gms1} is solved by discretizing it in space with centred differences, and integrating the resulting ODE system with Matlab's ode15s stiff solver. 
+
+Numerical solutions to the full 1-D problem were computed for increasing values of $L$. An initial solution was iterated until convergence for some domain length $L=L_0$; the stationary solution thus obtained then became the initial solution for an increased domain length $L=L_1$, etc. Typical solutions for 3 different values of $L$ are given in figure \ref{fig:typical}, while on the 2-mesa regime. 
+% 
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=2.5in]{typical_solutions}\includegraphics[width=2.5in]{two_mesa_branch}
+
+\caption{Three distinct 2-mesa solutions to the GMS system. Solution $I$ is close to the Turing instability, $II$ is the stable mesa solution, and $III$ is the unstable solution that develops when the domain length is increased past a critical point. The image on the right is the bifurcation diagram for the branch of two-mesa solutions.}
+\label{fig:typical}
+\end{center}
+\end{figure}
+% 
+The three solutions all occur for varying values of the domain length. They were all obtained through numerical continuation on the $L$ parameter. We started by obtaining a stationary solution from random initial data, and from it we used the numerical continuation package AUTO-07P \cite{doedel_auto-07p} to follow the curve of solutions for varying $L$, using $max(V)$ as the bifurcation parameter. 
+
+Solution $I$ is essentially the leading eigenvector $\phi = A\cos(2n\pi x/L)$, first estimated through linear stability analysis, and as expected from Turing theory, unstable. Going up on the branch beyond solution $I$ leads to the homogeneous Turing solution $u=0.5603$, $v=u^2$, and traversing the branch in the other direction leads to the stable mesa branch.
+
+Solution $II$ corresponds to the stable family of solutions, this is a characteristic mesa structure. Continuing on the branch along increasing $L$ eventually leads to a fold point, beyond which we reach the unstable branch characterized by solution $III$. Going beyond the fold point causes the solution to drop to the next branch of solutions, which will have double the number of mesas.
+% 
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=3.5in]{one_sol_bif}
+\caption{Four branches of the GMS system, with an overlay of the family of stable solutions obtained by traversing it left to right . When reaching the fold point of each branch the solutions fall to the next branch, effectively doubling the number of mesas. The upper horizontal unstable line are the unstable Turing solutions, and the red points on it are the values shown on table \ref{tab:L_turing}.}
+\label{fig:one_sol}
+\end{center}
+\end{figure}
+% 
+
+The bifurcation diagram for one, two, four, and eight mesa solutions is given in figure \ref{fig:one_sol}. The thickest line is a stable solution that is recomputed for increasing values of $L$. It traverses the stable branches from left to right, and at each fold point it falls to the next branch, which manifests in the solutions as a doubling in the number of mesas. Since each successive branch doubles the number of mesas, the critical value $L_c$ at which the new set of mesas will split doubles with each iteration, hence $L_c(n)=L_c(1)\times 2^{n-1}$. This exponential relationship can be readily seen in the bifurcation diagram of figure \ref{fig:one_sol}, which was plotted on a logarithmic scale.
+
+This numerical results show that there will always be a stable solution in the $(D,\tau)=O(1)$ parameter regime, for all domain lengths. The asymptotic formula \eqref{eqn:final1} provides us an estimate of the critical values $L_c(n)$ at which an $n$ mesa solution splits into $2n$ mesas. 
+
+In order to numerically compute the value, we first found the $u_c$, $v_c$ values that satisfy the Maxwell line condition, shown in \eqref{eqn:maxwell}, via a quadrature. It was then straightforward to numerically integrate $F(u_c;u_0)$ and the third term in \eqref{eqn:final1}. 
+
+The resulting value was $L_c = 2.1010$ for $-L<x<L$, or half that for $0<x<L$ (as shown in Figures \ref{fig:typical}, \ref{fig:one_sol}). The location of the fold point in the 1-mesa branch was then calculated by solving the full system, using $\Ep=0.002$ and $1500$ grid points. The value thus obtained was $L_c = 2.1325$.
+
+Furthermore, the system exhibits hysteresis, traversing the bifurcation diagram left to right produces a very different picture. Traversing left to right shows the splittings occurring at the points predicted in \eqref{eqn:final1}, whereas traversing in the opposite direction results in in the solution staying in the 8-mesa branch until the left edge of the stable branch, beyond which the solution will jump either to the 4-mesa branch, or to the 2-mesa branch. In principle estimating those points should involve very similar analysis as was done in \S~\ref{section:construction}. The differences between the bifurcation structure of $u(x)$ when traversed in either direction are shown in Figure \ref{fig:up_down}.
+
+% 
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=2.5in]{full_soln_up}\includegraphics[width=2.5in]{full_soln_down}
+\caption{The full solution curve for $u(x)$ as the bifurcation branches in Figure \ref{fig:one_sol} are traversed from left to right (image on the left), and from right to left (image on the right).}
+\label{fig:up_down}
+\end{center}
+\end{figure}
+% 
 
 \subsection{Construction of the solution in the near-shadow limit}
 
-For the near-shadow limit, $D=\DD/\Ep$, we want to construct a $K-$stripe stationary solution on $x\in[0,1]$, with $L=1/K$ the period of the solution, and $l$ the length of each individual mesa, as shown in figure \eqref{fig:single_mesa}.
+For the near-shadow limit, $D=\DD/\Ep$, we want to construct a $K-$stripe stationary solution on $x\in[0,1]$, with $L=1/K$ the period of the solution, and $l$ the length of each individual mesa, as shown in Figure \eqref{fig:single_mesa}.
 % 
 \begin{figure}[htb]
 \begin{center}
@@ -67,7 +347,7 @@ with $b = k\VV^2$. Now, we are looking for a heteroclinic connection in $u$ as t
 \end{figure}
 % 
 
-The function $f(w)=0$ has zeros at $w=0$ and $w_{\pm} = \frac{1\pm\sqrt{1-4b}}{2}$, with distinct real values for $w_{\pm}$ existing in the range $0\le b<1/4$. The profile of the curve in that range can be seen in figure \eqref{fig:f(w)}. The Maxwell line condition states that a heteroclinic connection will exist for the value $b=b_0$ such that $\int_0^{w_+} f(w)dw = 0$. Integrating $f(w)$ we get
+The function $f(w)=0$ has zeros at $w=0$ and $w_{\pm} = \frac{1\pm\sqrt{1-4b}}{2}$, with distinct real values for $w_{\pm}$ existing in the range $0\le b<1/4$. The profile of the curve in that range can be seen in Figure \eqref{fig:f(w)}. The Maxwell line condition states that a heteroclinic connection will exist for the value $b=b_0$ such that $\int_0^{w_+} f(w)dw = 0$. Integrating $f(w)$ we get
 % 
 \begin{equation*}
 % \label{eqn:maxwell_lc}

@@ -135,7 +135,7 @@ The values of $L$ at which heterogeneous solutions appear, for various eigenmode
 \end{table}
 % 
 
-\subsection{Construction of a single mesa}
+\subsection{\label{section:construction}Construction of a single mesa}
 
 Solving the system numerically reveals that the solutions past the Turing thresholds have a mesa profile (see \autoref{fig:mesa_profiles}). A single mesa is essentially a saturated pulse solution with a symmetric flat profile in the centre of the domain, separated from a quasi-zero solution by sharp interfaces located at $x=\pm l$. Analogously to pulse systems such as the Schnakenberg system (cf. \cite{schnakenberg_simple_1979}), increasing the domain length splits the solution into images of the single mesa.
 % 
@@ -169,10 +169,10 @@ To $O(1)$, since $D_u = O(\Ep^2)$, the system is
 
 From the boundary conditions we have that $V_0$ is a constant. To determine its value, we use the Maxwell line condition \cite{maxwell1994}, which states that in order to have a heteroclinic connection between $x=0$ and $x=L$, there has to be a value $v_c$, such that the area under the roots of $a(u,v_c) = -u +  \frac{u^2}{v_c(1+ku^2)}$ is zero. The three roots of $a(u,v)$ occur at $u=0$ and at $u=u_{\pm}(v) = \frac{1\pm\sqrt{1-4kv^2}}{2kv}$, with $0<u_-(v)-<u_+(v)$. The non-zero roots can be expressed as $v=h(u)=\frac{u}{1+ku^2}$ for $0<v<v_m$ , with $v=v_m$ the value at which both roots coalesce. Hence, the solution to the $O(1)$ equation is $V_0=v_c$, with $v_c$ the value that satisfies the Maxwell line condition
 % 
-\begin{equation*}
+\begin{equation}
 \label{eqn:maxwell}
 \int_0^{u_c}a(u,v_c)=0,\qquad u_c\equiv u_+(v_c),
-\end{equation*}
+\end{equation}
 % 
 and $U_0$ the unique heteroclinic connection satisfying $U_0(-\infty)=u_+(v_c)=u_c$ and $U_0(\infty)=0$.
 
@@ -236,10 +236,10 @@ The exact solution on the outer region given in \eqref{eqn:right} can be calcula
 
 Finally, since $v'(l^+)=v'(l^-)$, we can solve for $l$ in \eqref{eqn:outer1} and substitute it into \eqref{eqn:feo1} to obtain the critical points at which the domain will split, as a function of the domain length and $D$:
 % 
-\begin{equation*}
+\begin{equation}
   \label{eqn:final1}
   \frac{L}{\sqrt{D}}=\tanh^{-1}\left(\frac{\sqrt{2F(u_c;u_0)}}{v_c} \right) - \frac{\sqrt{2F(u_c;u_0)}}{g(u_c)} - \int_{u_0}^{u_c}\frac{g'(u)}{(g(u))^2}\sqrt{2F(u;u_0)}du.
-\end{equation*}
+\end{equation}
 % 
 
 \subsection{Bifurcation analysis}
@@ -263,10 +263,7 @@ The three solutions all occur for varying values of the domain length. They were
 
 Solution $I$ is essentially the leading eigenvector $\phi = A\cos(2n\pi x/L)$, first estimated through linear stability analysis, and as expected from Turing theory, unstable. Going up on the branch beyond solution $I$ leads to the homogeneous Turing solution $u=0.5603$, $v=u^2$, and traversing the branch in the other direction leads to the stable mesa branch.
 
-Solution $II$ corresponds to the stable family of solutions, this is a characteristic mesa structure. Increasing $L$ and continuing on the branch eventually leads to a fold point, beyond which we reach the unstable branch characterized by solution $III$. Going beyond the fold point causes the solution to drop to the next branch of solutions, which will have double the number of mesas.
-
-*****aqui me quede, 22jul
-
+Solution $II$ corresponds to the stable family of solutions, this is a characteristic mesa structure. Continuing on the branch along increasing $L$ eventually leads to a fold point, beyond which we reach the unstable branch characterized by solution $III$. Going beyond the fold point causes the solution to drop to the next branch of solutions, which will have double the number of mesas.
 % 
 \begin{figure}[htb]
 \begin{center}
@@ -277,23 +274,51 @@ Solution $II$ corresponds to the stable family of solutions, this is a character
 \end{figure}
 % 
 
-The bifurcation diagram for one, two, four, and eight mesa solutions is given in figure \ref{fig:one_sol}. The thickest line is a stable solution that is recomputed for increasing values of $L$. It traverses the stable branches from left to right, and at each fold point it falls to the next branch, which manifests in the solutions as a doubling in the number of mesas. Since each successive branch doubles the number of mesas, the critical value $L_c$ at which the new set of mesas will split doubles with each iteration, hence $L_c(n)=L_c(1)\times 2^n$. This exponential relationship can be readily seen in the bifurcation diagram of figure \ref{fig:one_sol}, which was plotted on a logarithmic scale.
+The bifurcation diagram for one, two, four, and eight mesa solutions is given in figure \ref{fig:one_sol}. The thickest line is a stable solution that is recomputed for increasing values of $L$. It traverses the stable branches from left to right, and at each fold point it falls to the next branch, which manifests in the solutions as a doubling in the number of mesas. Since each successive branch doubles the number of mesas, the critical value $L_c$ at which the new set of mesas will split doubles with each iteration, hence $L_c(n)=L_c(1)\times 2^{n-1}$. This exponential relationship can be readily seen in the bifurcation diagram of figure \ref{fig:one_sol}, which was plotted on a logarithmic scale.
 
-Furthermore, the system exhibits hysteresis, traversing the bifurcation diagram left to right produces a very different picture. Traversing left to right shows the splittings occurring at the points predicted in \eqref{eqn:final1}, whereas traversing in the opposite direction results in in the solution staying in the 8-mesa branch from $L=18$ up to $L~2.5$, beyond which the solution will jump either to the 4-mesa branch, or to the 2-mesa branch (very sensitive???). Two figures with the solution for $v(x)$ when traversed in either direction are shown in figure \ref{fig:up_down}.
+This numerical results show that there will always be a stable solution in the $(D,\tau)=O(1)$ parameter regime, for all domain lengths. The asymptotic formula \eqref{eqn:final1} provides us an estimate of the critical values $L_c(n)$ at which an $n$ mesa solution splits into $2n$ mesas. 
 
+In order to numerically compute the value, we first found the $u_c$, $v_c$ values that satisfy the Maxwell line condition, shown in \eqref{eqn:maxwell}, via a quadrature. It was then straightforward to numerically integrate $F(u_c;u_0)$ and the third term in \eqref{eqn:final1}. 
+
+The resulting value was $L_c = 2.1010$ for $-L<x<L$, or half that for $0<x<L$ (as shown in Figures \ref{fig:typical}, \ref{fig:one_sol}). The location of the fold point in the 1-mesa branch was then calculated by solving the full system, using $\Ep=0.002$ and $1500$ grid points. The value thus obtained was $L_c = 2.1325$.
+
+Furthermore, the system exhibits hysteresis, traversing the bifurcation diagram left to right produces a very different picture. Traversing left to right shows the splittings occurring at the points predicted in \eqref{eqn:final1}, whereas traversing in the opposite direction results in in the solution staying in the 8-mesa branch until the left edge of the stable branch, beyond which the solution will jump either to the 4-mesa branch, or to the 2-mesa branch. In principle estimating those points should involve very similar analysis as was done in \S~\ref{section:construction}. The differences between the bifurcation structure of $u(x)$ when traversed in either direction are shown in Figure \ref{fig:up_down}.
 % 
 \begin{figure}[htb]
 \begin{center}
 \includegraphics[width=2.5in]{full_soln_up}\includegraphics[width=2.5in]{full_soln_down}
-\caption{The full solution curve for $v(x)$ as $L$ is varied from left to right (image on the left), and from right to left (image on the right).}
+\caption{The full solution curve for $u(x)$ as the bifurcation branches in Figure \ref{fig:one_sol} are traversed from left to right (image on the left), and from right to left (image on the right).}
 \label{fig:up_down}
 \end{center}
 \end{figure}
 % 
 
-We had previously derived an asymptotic formula in \eqref{eqn:final1} that estimates the critical value $L_c$ at which a one-mesa solution splits into two. In order to numerically compute the value, we first found the $u_c$, $v_c$ values that satisfy the Maxwell line condition, shown in \eqref{eqn:maxwell}, via a quadrature. It was then straightforward to numerically integrate $F(u_c;u_0)$ and the third term in \eqref{eqn:final1}. 
+All of the work above was done with the domain length fixed; when a stable solution was attained it was used as the starting point for the next computation at a slightly changed $L$. When considering dynamically varying domains, i.e., making $L\equiv L(t)$, the system needs to be modified. A general framework on how to extend stationary equations into growing domains can be found in \cite{plaza2004growth}. The extended system for isotropic exponential growth is relatively simple, 
+% 
+\begin{equation*}
+\label{eqn:gms_growth}
+\begin{split}
+\begin{aligned}
+	u_t &= \frac{\Ep^2}{L^2}\De u -\rho u - u +\frac{u^2}{v(1+ku^2)} \\
+	\tau v_t &= \frac{D}{L^2}\De v - \rho v - v + u^2 \\
+	L_t &= \rho L,
+\end{aligned}
+\end{split}
+\end{equation*}
+% 
+with $\rho$ the rate of domain growth. 
 
-The resulting value was $L_c = 2.1010$ for $-L<x<L$, or half that for $0<x<L$ (as shown in figures \ref{fig:one_sol}, \ref{fig:typical}, \ref{fig:up_down}). The location of the fold point in the 1-mesa branch was then calculated by solving the full system, using $\Ep=0.002$ and $1500$ grid points. The value thus obtained was $L_c = 2.1325$.
+We solved the system by discretizing in space using centred differences, with second order boundary conditions, and Matlab's ode15s routine was used for time integration. The solution curves for various values of $\rho$ were obtained, and when overlapping them in the bifurcation diagram of Figure \ref{fig:one_sol} we can see a delayed bifurcation effect in the left image of Figure \ref{fig:growth}. Notice the sharp transitions of the static solutions in Figure \ref{fig:up_down}, compared to the soft dynamic transitions on the right image in Figure \ref{fig:growth}. 
+% 
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=2.5in]{all_branches}\includegraphics[width=2.5in]{growing}
+\caption{Solution curves for systems with growing domains, $L(t)=e^{\rho t}$. Notice the delay in the bifurcation (jump between branches) as $\rho$ gets larger. The figure on the right shows the effect on figure \ref{fig:up_down} (left) when adding domain growth, with $\rho=0.002$.}
+\label{fig:growth}
+\end{center}
+\end{figure}
+% 
+
 
 
 \subsection{Construction of the solution in the near-shadow limit}
