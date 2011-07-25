@@ -319,7 +319,58 @@ We solved the system by discretizing in space using centred differences, with se
 \end{figure}
 % 
 
+***hast aqui hoy julio 25
 
+When we first obtained the bifurcation curves, we had no information regarding the stability of the branches, as the package that we used (AUTO-07P) doesn't calculate Jacobians when dealing with parabolic PDEs. We performed the calculation separately by saving the stationary solutions obtained while traversing the branches and using them as the basis of a Taylor expansion on a perturbation to the solutions.
+
+Let the perturbed solutions be of the form
+% 
+\begin{equation}
+\label{eqn:gms_eigs}
+\begin{split}
+\begin{aligned}
+u(x) = u_s(x) + e^{\lA t}\phi(x)\\
+v(x) = v_s(x) + e^{\lA t}\psi(x),
+\end{aligned}
+\end{split}
+\end{equation}
+% 
+with $u_s$, $v_s$ the stationary solutions and $|u-u_s|\ll 1$, $|v-v_s|\ll 1$. Substituting into \eqref{eqn:gms1}, we get
+% 
+\begin{equation}
+\label{eqn:gms_2}
+\begin{split}
+\begin{aligned}
+	\lA \phi &= \Ep^2\De \phi + a_u(u_s,v_s)\phi + a_v(u_s,v_s)\psi \\
+	\lA\tau \psi &= D\De \psi + b_u(u_s,v_s)\phi + b_v(u_s,v_s)\psi.
+\end{aligned}
+\end{split}
+\end{equation}
+
+This can be written as an eigenvalue problem in matrix form, $Aw = \lA w$, with $w = (\phi,\psi)^T$, and $A$ as
+% 
+\begin{equation}
+\label{eqn:Amatrix}
+  A =
+	\begin{bmatrix}
+		\Ep^2\De + a_u(u_s,v_s)& a_v(u_s,v_s) \\
+		b_u(u_s,v_s)/\tau& D\De/\tau + b_v(u_s,v_s)/\tau
+  \end{bmatrix}.
+\end{equation}
+
+% 
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=3in]{eigs_1}
+\caption{Stability curve of the maximum eigenvalue vs $L$ for solutions on the 1-mesa branch.}
+\label{fig:eigs1}
+\end{center}
+\end{figure}
+% 
+
+Plotting the eigenvalue with largest real part versus the corresponding $L$ value for the stationary solutions reveals the stable and unstable manifolds in the branches. In figure \ref{fig:eigs1} we show such a curve for stationary solutions on the 1-mesa branch. The labelling regarding stability on all the previous figures was based on this calculation, and due to the symmetry of the system, the curves for the different branches are essentially identical.
+
+The section in figure \ref{fig:eigs1} where the eigenvalues have negative values is roughly a straight line of magnitude $O(\Ep)$. This was expected from the estimates done on \cite{kolokolnikov_spot_2009} (or perhaps add the calculations).
 
 \subsection{Construction of the solution in the near-shadow limit}
 

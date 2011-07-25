@@ -283,7 +283,6 @@ In order to numerically compute the value, we first found the $u_c$, $v_c$ value
 The resulting value was $L_c = 2.1010$ for $-L<x<L$, or half that for $0<x<L$ (as shown in Figures \ref{fig:typical}, \ref{fig:one_sol}). The location of the fold point in the 1-mesa branch was then calculated by solving the full system, using $\Ep=0.002$ and $1500$ grid points. The value thus obtained was $L_c = 2.1325$.
 
 Furthermore, the system exhibits hysteresis, traversing the bifurcation diagram left to right produces a very different picture. Traversing left to right shows the splittings occurring at the points predicted in \eqref{eqn:final1}, whereas traversing in the opposite direction results in in the solution staying in the 8-mesa branch until the left edge of the stable branch, beyond which the solution will jump either to the 4-mesa branch, or to the 2-mesa branch. In principle estimating those points should involve very similar analysis as was done in \S~\ref{section:construction}. The differences between the bifurcation structure of $u(x)$ when traversed in either direction are shown in Figure \ref{fig:up_down}.
-
 % 
 \begin{figure}[htb]
 \begin{center}
@@ -293,6 +292,34 @@ Furthermore, the system exhibits hysteresis, traversing the bifurcation diagram 
 \end{center}
 \end{figure}
 % 
+
+All of the work above was done with the domain length fixed; when a stable solution was attained it was used as the starting point for the next computation at a slightly changed $L$. When considering dynamically varying domains, i.e., making $L\equiv L(t)$, the system needs to be modified. A general framework on how to extend stationary equations into growing domains can be found in \cite{plaza2004growth}. The extended system for isotropic exponential growth is relatively simple, 
+% 
+\begin{equation*}
+\label{eqn:gms_growth}
+\begin{split}
+\begin{aligned}
+	u_t &= \frac{\Ep^2}{L^2}\De u -\rho u - u +\frac{u^2}{v(1+ku^2)} \\
+	\tau v_t &= \frac{D}{L^2}\De v - \rho v - v + u^2 \\
+	L_t &= \rho L,
+\end{aligned}
+\end{split}
+\end{equation*}
+% 
+with $\rho$ the rate of domain growth. 
+
+We solved the system by discretizing in space using centred differences, with second order boundary conditions, and Matlab's ode15s routine was used for time integration. The solution curves for various values of $\rho$ were obtained, and when overlapping them in the bifurcation diagram of Figure \ref{fig:one_sol} we can see a delayed bifurcation effect in the left image of Figure \ref{fig:growth}. Notice the sharp transitions of the static solutions in Figure \ref{fig:up_down}, compared to the soft dynamic transitions on the right image in Figure \ref{fig:growth}. 
+% 
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=2.5in]{all_branches}\includegraphics[width=2.5in]{growing}
+\caption{Solution curves for systems with growing domains, $L(t)=e^{\rho t}$. Notice the delay in the bifurcation (jump between branches) as $\rho$ gets larger. The figure on the right shows the effect on figure \ref{fig:up_down} (left) when adding domain growth, with $\rho=0.002$.}
+\label{fig:growth}
+\end{center}
+\end{figure}
+% 
+
+
 
 \subsection{Construction of the solution in the near-shadow limit}
 
