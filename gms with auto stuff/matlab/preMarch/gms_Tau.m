@@ -16,8 +16,8 @@ noise = 15000000;
 skipx = ceil(max(length(X))/250); skipt = ceil(max(T)/250);
 % skipx = 1; skipt = 1;
 
-L1_all = load('../data/L1param');
-% L2_all = load('../data/L2param');
+% L1_all = load('../../data/L1param');
+L2_all = load('../../data/L2param');
 % Int = 12:164;
 % Int = 204:266
 Int = 82;
@@ -26,9 +26,9 @@ for I = 1:length(Tau_all)
   Tau = Tau_all(I);
 %   L = L1_all(Int-11); 
   L = 1.6;   % at this value there are permanent oscillations
-  Nom_u = ['../data/sol1_u',num2str(Int)];
-  Nom_v = ['../data/sol1_v',num2str(Int)];
-  Nom_x = ['../data/sol1_x',num2str(Int)];
+  Nom_u = ['../../data/sol1_u',num2str(Int)];
+  Nom_v = ['../../data/sol1_v',num2str(Int)];
+  Nom_x = ['../../data/sol1_x',num2str(Int)];
   U0 = load(Nom_u);
   V0 = load(Nom_v);
   X0 = load(Nom_x);
@@ -53,7 +53,8 @@ for I = 1:length(Tau_all)
 %   MaxEva_im(Temo) = max(imag(diag(EVA)));
 %   [MaxEva_re, MaxEva_im]
   wild = Eva_sorted_all(1:4);
-  plot(wild,'o'), hold on, axis([-0.001,0.001,-0.05,0.05])
+  plot(wild,'o'), hold on, 
+%   axis([-0.001,0.001,-0.05,0.05])
   grid on, pause(0.1)
   [r1,c1] = find(EVA == wild(1));
   [r2,c2] = find(EVA == wild(2));
