@@ -321,7 +321,7 @@ We solved the system by discretizing in space using centred differences, with se
 
 ***hast aqui hoy julio 25
 
-When we first obtained the bifurcation curves, we had no information regarding the stability of the branches, as the package that we used (AUTO-07P) doesn't calculate Jacobians when dealing with parabolic PDEs. We performed the calculation separately by saving the stationary solutions obtained while traversing the branches and using them as the basis of a Taylor expansion on a perturbation to the solutions.
+The stability of the branches highlighted in the above figures had to be obtained independently from the continuation software used to generate the bifurcation the diagram. The package that we used (AUTO-07P \cite{doedel_auto-07p}) is designed primarily for finite dimensional systems, and for ODE systems can easily establish stability. When extended to dealing with parabolic PDEs this capability is lost. We performed the eigenvalue analysis separately by saving the stationary solutions obtained while traversing the branches, and using them as the basis of a Taylor expansion on a perturbation to the solutions. The algorithm in AUTO utilizes non-uniform grids, so we used a spline on the output to generate a uniformly spaced grid amenable with the discrete Jacobian
 
 Let the perturbed solutions be of the form
 % 
@@ -358,19 +358,17 @@ This can be written as an eigenvalue problem in matrix form, $Aw = \lA w$, with 
   \end{bmatrix}.
 \end{equation}
 
+Plotting the eigenvalue with largest real part versus the corresponding $L$ value for the stationary solutions reveals the stable and unstable manifolds in the branches. In Figure \ref{fig:eigs1} we show such a curve for the full range of stationary solutions along the 1-mesa branch. The labelling regarding stability on all the previous figures was based on this calculation, and due to the symmetry of the system, the curves for the different branches are essentially identical.
 % 
 \begin{figure}[htb]
 \begin{center}
-\includegraphics[width=3in]{eigs_1}
+\includegraphics[width=3.5in]{eigs_1}
 \caption{Stability curve of the maximum eigenvalue vs $L$ for solutions on the 1-mesa branch.}
 \label{fig:eigs1}
 \end{center}
 \end{figure}
 % 
-
-Plotting the eigenvalue with largest real part versus the corresponding $L$ value for the stationary solutions reveals the stable and unstable manifolds in the branches. In figure \ref{fig:eigs1} we show such a curve for stationary solutions on the 1-mesa branch. The labelling regarding stability on all the previous figures was based on this calculation, and due to the symmetry of the system, the curves for the different branches are essentially identical.
-
-The section in figure \ref{fig:eigs1} where the eigenvalues have negative values is roughly a straight line of magnitude $O(\Ep)$. This was expected from the estimates done on \cite{kolokolnikov_spot_2009} (or perhaps add the calculations).
+The region in Figure \ref{fig:eigs1} where the eigenvalues have negative values is roughly a straight line of magnitude $O(\Ep)$. This was expected from the estimates done on \cite{kolokolnikov_spot_2009} (or perhaps point to latter calculations).
 
 \subsection{Construction of the solution in the near-shadow limit}
 
