@@ -17,7 +17,7 @@ The dimensionless Gierer-Meinhardt system \cite{gierer_theory_1972}, with satura
 % 
 plus homogeneous Neumann boundary conditions on $x\in[-1,1]$. We consider the limit where $\Ep\ll 1$, and we will study various parameter regimes.
 
-\subsection{Turing stability analysis}
+\section{Turing stability analysis}
 
 A homogeneous stationary solution to the GMS model \eqref{eqn:o-gms1} ($u_t = v_t = \De u = \De v = 0$) exists when
 % 
@@ -135,7 +135,7 @@ The values of $L$ at which heterogeneous solutions appear, for various eigenmode
 \end{table}
 % 
 
-\subsection{\label{section:construction}Construction of a single mesa}
+\section{\label{section:construction}Construction of a single mesa}
 
 Solving the system numerically reveals that the solutions past the Turing thresholds have a mesa profile (see \autoref{fig:mesa_profiles}). A single mesa is essentially a saturated pulse solution with a symmetric flat profile in the centre of the domain, separated from a quasi-zero solution by sharp interfaces located at $x=\pm l$. Analogously to pulse systems such as the Schnakenberg system (cf. \cite{schnakenberg_simple_1979}), increasing the domain length splits the solution into images of the single mesa.
 % 
@@ -242,7 +242,7 @@ Finally, since $v'(l^+)=v'(l^-)$, we can solve for $l$ in \eqref{eqn:outer1} and
 \end{equation}
 % 
 
-\subsection{Bifurcation analysis}
+\section{Bifurcation analysis}
 
 Equation \eqref{eqn:final1} provides an analytical estimate of the domain length at which splitting occurs. We want to study the splitting behaviour as the domain increases both statically (when stationary solutions are recomputed at each domain length value), and dynamically (when the domain length is a dynamic variable). We start by focusing on how solutions change numerically as the domain length increases. The boundary conditions were homogeneous Neumann, and the values of the constants were $k=2.5, \tau=1, D=1$, and $\Ep=0.02$. 
 
@@ -370,7 +370,7 @@ Plotting the eigenvalue with largest real part versus the corresponding $L$ valu
 % 
 The region in Figure \ref{fig:eigs1} where the eigenvalues have negative values is roughly a straight line of magnitude $O(\Ep)$. This was expected from the estimates done on \cite{kolokolnikov_spot_2009} (or perhaps point to latter calculations).
 
-\subsection{Instabilities that develop for large $\tau$}
+\section{Instabilities that develop for large $\tau$}
 
 So far we have examined the instabilities that occur for increasing $L$, which typically result in the splitting of solutions. A second mechanism for generating instabilities is when the value of $\tau$ increases. In all previous calculations we've worked with $\tau=O(1)$, and the difference in difusivities marks the $v(x)$ equation as the fast component in the system. However, if $\tau$ grows to be $O(1/\Ep)$, or even to $O(1/\Ep^2)$, the $v$ equation will slow down and approach the time scale of the $u$ equation. When this happens, feedback will happen between the two equations, and phenomena characteristic of delay differential equations will occur. Oscillations and eventually even chaos can appear. 
 
@@ -403,7 +403,7 @@ The second case involves a single mesa on a slightly larger initial domain. When
 
 ***(Perhaps can also include a figure of the eigenvectors associated to the two largest eigenvalues, one odd and the other even).
 
-\subsection{Construction of the solution in the near-shadow limit}
+\section{Construction of the solution in the near-shadow limit}
 
 For the near-shadow limit, $D=\DD/\Ep$, we want to construct a $K-$stripe stationary solution on $x\in[0,1]$, with $L=1/K$ the period of the solution, and $l$ the length of each individual mesa, as shown in Figure \eqref{fig:single_mesa}.
 % 
@@ -725,7 +725,7 @@ and using the fact that $\LL w'=0$, the solvability condition we get is
 since $\VV_2' = \VV_{21} = -v_{1,x}(\chi_r)$.
 
 
-\subsection{\label{section:stability}Stability in the near-shadow limit to perturbations in the y direction}
+\section{\label{section:stability}Stability in the near-shadow limit to perturbations in the y direction}
 
 We assume that the solutions exist in a rectangular domain $[0,1]\times[0,d_0]$, with Neumann boundary conditions on all sides. We introduce a perturbation on the equilibrium solution $(u_e,v_e)$ of the form
 % 
